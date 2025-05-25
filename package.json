@@ -1,0 +1,55 @@
+{
+  "name": "netease-reading-website",
+  "version": "1.0.0",
+  "description": "网易云阅读网站 - 一个基于HTML、CSS、JavaScript的在线阅读平台",
+  "main": "index.html",
+  "scripts": {
+    "dev": "live-server --port=3000 --open=index.html",
+    "build": "npm run sass:build",
+    "sass:watch": "sass --watch sass:css/sass --style=compressed",
+    "sass:build": "sass sass:css/sass --style=compressed",
+    "lint:js": "eslint js/**/*.js",
+    "lint:css": "stylelint sass/**/*.scss",
+    "format": "prettier --write \"**/*.{js,html,css,scss}\"",
+    "serve": "http-server -p 8080 -o",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "reading",
+    "books",
+    "netease",
+    "frontend",
+    "html",
+    "css",
+    "javascript",
+    "sass",
+    "responsive"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "sass": "^1.69.0",
+    "live-server": "^1.2.2",
+    "http-server": "^14.1.1",
+    "eslint": "^8.50.0",
+    "stylelint": "^15.10.0",
+    "stylelint-config-standard-scss": "^11.0.0",
+    "prettier": "^3.0.0"
+  },
+  "dependencies": {
+    "swiper": "^10.3.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/netease-reading-website.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/netease-reading-website/issues"
+  },
+  "homepage": "https://yourusername.github.io/netease-reading-website"
+} 

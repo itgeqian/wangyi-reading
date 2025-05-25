@@ -1,0 +1,756 @@
+/* 样式改进文件 */
+
+/* 购物车样式改进 */
+.cart-item {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+  background: #fff;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.cart-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.cart-item .book-cover {
+  width: 80px;
+  height: 100px;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.cart-item .book-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.cart-item .book-info {
+  flex: 1;
+  margin-right: 15px;
+}
+
+.cart-item .book-info .book-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.cart-item .book-info .book-author {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.cart-item .book-info .book-desc {
+  font-size: 12px;
+  color: #999;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.cart-item .book-info .book-price .price {
+  font-size: 18px;
+  font-weight: 600;
+  color: #c9483c;
+  margin-right: 10px;
+}
+
+.cart-item .book-info .book-price .original-price {
+  font-size: 14px;
+  color: #999;
+  text-decoration: line-through;
+}
+
+.cart-item .quantity-controls {
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.cart-item .quantity-controls .quantity-btn {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: all 0.2s ease;
+}
+
+.cart-item .quantity-controls .quantity-btn:hover {
+  background: #f5f5f5;
+  border-color: #c9483c;
+}
+
+.cart-item .quantity-controls .quantity-btn.minus {
+  border-radius: 4px 0 0 4px;
+}
+
+.cart-item .quantity-controls .quantity-btn.plus {
+  border-radius: 0 4px 4px 0;
+}
+
+.cart-item .quantity-controls .quantity-input {
+  width: 50px;
+  height: 30px;
+  border: 1px solid #ddd;
+  border-left: none;
+  border-right: none;
+  text-align: center;
+  font-size: 14px;
+  outline: none;
+}
+
+.cart-item .quantity-controls .quantity-input:focus {
+  border-color: #c9483c;
+}
+
+.cart-item .item-total {
+  text-align: right;
+  min-width: 100px;
+}
+
+.cart-item .item-total .total-price {
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+  color: #c9483c;
+  margin-bottom: 10px;
+}
+
+.cart-item .item-total .remove-btn {
+  background: #ff4d4f;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background 0.2s ease;
+}
+
+.cart-item .item-total .remove-btn:hover {
+  background: #ff7875;
+}
+
+/* 购物车总计样式 */
+.cart-summary {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-top: 20px;
+}
+
+.cart-summary .summary-content {
+  max-width: 400px;
+  margin-left: auto;
+}
+
+.cart-summary .summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.cart-summary .summary-row:last-of-type {
+  border-bottom: none;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.cart-summary .total-amount {
+  color: #c9483c;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.cart-summary .cart-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.cart-summary .cart-actions button {
+  flex: 1;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cart-summary .cart-actions button.btn-primary {
+  background: #c9483c;
+  color: #fff;
+}
+
+.cart-summary .cart-actions button.btn-primary:hover {
+  background: #a73e35;
+}
+
+.cart-summary .cart-actions button.btn-secondary {
+  background: #f5f5f5;
+  color: #666;
+  border: 1px solid #ddd;
+}
+
+.cart-summary .cart-actions button.btn-secondary:hover {
+  background: #e8e8e8;
+}
+
+/* 空购物车样式 */
+.empty-cart {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+}
+
+.empty-cart .empty-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+}
+
+.empty-cart h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.empty-cart p {
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.empty-cart .btn-primary {
+  display: inline-block;
+  padding: 12px 30px;
+  background: #c9483c;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: background 0.2s ease;
+}
+
+.empty-cart .btn-primary:hover {
+  background: #a73e35;
+}
+
+/* 按钮样式统一 */
+.btn-primary {
+  background: #c9483c;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: #a73e35;
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background: #f5f5f5;
+  color: #666;
+  border: 1px solid #ddd;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background: #e8e8e8;
+  border-color: #bbb;
+}
+
+/* 加入购物车按钮 */
+.add-to-cart {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: #c9483c;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.book-item:hover .add-to-cart,
+.product-item:hover .add-to-cart {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.add-to-cart:hover {
+  background: #a73e35;
+}
+
+/* 商品项目样式改进 */
+.book-item,
+.product-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  transition: transform 0.2s ease;
+}
+
+.book-item:hover,
+.product-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* 消息提示动画改进 */
+.message {
+  animation: slideInRight 0.3s ease;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 书籍悬停动画效果 */
+.recommend-box ul li,
+.huai-introduce ul li,
+.Ineu-left ul li,
+.quality-left .book li {
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.recommend-box ul li:hover,
+.huai-introduce ul li:hover,
+.Ineu-left ul li:hover,
+.quality-left .book li:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.recommend-box ul li:hover img,
+.huai-introduce ul li:hover img,
+.Ineu-left ul li:hover img,
+.quality-left .book li:hover img {
+  transform: scale(1.05);
+}
+
+.recommend-box ul li:hover .title-lj,
+.recommend-box ul li:hover .huai-word a,
+.recommend-box ul li:hover h3,
+.huai-introduce ul li:hover .title-lj,
+.huai-introduce ul li:hover .huai-word a,
+.huai-introduce ul li:hover h3,
+.Ineu-left ul li:hover .title-lj,
+.Ineu-left ul li:hover .huai-word a,
+.Ineu-left ul li:hover h3,
+.quality-left .book li:hover .title-lj,
+.quality-left .book li:hover .huai-word a,
+.quality-left .book li:hover h3 {
+  color: #c9483c !important;
+}
+
+.recommend-box ul li:hover .huai-ready,
+.huai-introduce ul li:hover .huai-ready,
+.Ineu-left ul li:hover .huai-ready,
+.quality-left .book li:hover .huai-ready {
+  background: #a73e35;
+  transform: translateY(-2px);
+}
+
+.recommend-box ul li img,
+.huai-introduce ul li img,
+.Ineu-left ul li img,
+.quality-left .book li img {
+  transition: transform 0.3s ease;
+  border-radius: 4px;
+}
+
+.recommend-box ul li .huai-ready,
+.huai-introduce ul li .huai-ready,
+.Ineu-left ul li .huai-ready,
+.quality-left .book li .huai-ready {
+  transition: all 0.3s ease;
+}
+
+/* 主编推荐区域特殊效果 */
+.recommend-box ul li {
+  position: relative;
+}
+
+.recommend-box ul li::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+  z-index: 1;
+}
+
+.recommend-box ul li:hover::before {
+  transform: translateX(100%);
+}
+
+/* 图书网格悬停效果 */
+.quality-left .book li:hover {
+  background: #f8f9fa;
+}
+
+.quality-left .book li:hover div:first-child {
+  transform: scale(1.1);
+}
+
+.quality-left .book li div:first-child {
+  transition: transform 0.3s ease;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+/* 购物车按钮样式 */
+.shopping-car {
+  transition: all 0.3s ease;
+}
+
+.shopping-car.in-cart {
+  background: #52c41a !important;
+  color: #fff !important;
+}
+
+.shopping-car.in-cart .shop-btn {
+  color: #fff !important;
+}
+
+.shopping-car.in-cart:hover {
+  background: #389e0d !important;
+}
+
+.shopping-car .shop-btn {
+  transition: all 0.3s ease;
+}
+
+/* 详情页特殊样式 */
+.book-inf .shopping-car {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #c9483c;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.book-inf .shopping-car:hover {
+  background: #a73e35;
+  transform: translateY(-1px);
+}
+
+.book-inf .shopping-car.in-cart {
+  background: #52c41a;
+}
+
+.book-inf .shopping-car.in-cart:hover {
+  background: #389e0d;
+}
+
+.book-inf .shopping-car .iconfont {
+  margin-right: 5px;
+}
+
+/* 移动端购物车样式 */
+@media screen and (max-width: 768px) {
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+  }
+
+  .cart-item .book-cover {
+    width: 60px;
+    height: 75px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+
+  .cart-item .book-info {
+    margin-right: 0;
+    margin-bottom: 15px;
+    width: 100%;
+  }
+
+  .cart-item .quantity-controls {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  .cart-item .item-total {
+    width: 100%;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .cart-summary .cart-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+/* 加载动画改进 */
+.loading-overlay {
+  backdrop-filter: blur(2px);
+}
+
+.spinner {
+  position: relative;
+}
+
+.spinner::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border-radius: 50%;
+  background: #c9483c;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c9483c;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a73e35;
+}
+
+/* 轮播图样式修复 */
+.section-adv .swiper-container,
+.section-adv #main-carousel {
+  width: 720px;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-adv .swiper-container .swiper-wrapper,
+.section-adv #main-carousel .swiper-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: flex;
+  transition-property: transform;
+  box-sizing: content-box;
+}
+
+.section-adv .swiper-container .swiper-slide,
+.section-adv #main-carousel .swiper-slide {
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition-property: transform;
+}
+
+.section-adv .swiper-container .swiper-slide img,
+.section-adv #main-carousel .swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 分页器样式 */
+.section-adv .swiper-container .swiper-pagination,
+.section-adv #main-carousel .swiper-pagination {
+  position: absolute;
+  text-align: center;
+  transition: 300ms opacity;
+  transform: translate3d(0,0,0);
+  z-index: 10;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+}
+
+.section-adv .swiper-container .swiper-pagination .swiper-pagination-bullet,
+.section-adv #main-carousel .swiper-pagination .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  border-radius: 100%;
+  background: rgba(255,255,255,0.5);
+  opacity: 1;
+  margin: 0 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.section-adv .swiper-container .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active,
+.section-adv #main-carousel .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background: #c9483c;
+  transform: scale(1.2);
+}
+
+/* 导航按钮样式 */
+.section-adv .swiper-container .swiper-button-next,
+.section-adv .swiper-container .swiper-button-prev,
+.section-adv #main-carousel .swiper-button-next,
+.section-adv #main-carousel .swiper-button-prev {
+  position: absolute;
+  top: 50%;
+  width: 27px;
+  height: 44px;
+  margin-top: -22px;
+  z-index: 10;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.8);
+  background: rgba(0,0,0,0.3);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.section-adv .swiper-container .swiper-button-next:hover,
+.section-adv .swiper-container .swiper-button-prev:hover,
+.section-adv #main-carousel .swiper-button-next:hover,
+.section-adv #main-carousel .swiper-button-prev:hover {
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+}
+
+.section-adv .swiper-container .swiper-button-next::after,
+.section-adv .swiper-container .swiper-button-prev::after,
+.section-adv #main-carousel .swiper-button-next::after,
+.section-adv #main-carousel .swiper-button-prev::after {
+  font-family: swiper-icons;
+  font-size: 18px;
+  text-transform: none!important;
+  letter-spacing: 0;
+  text-transform: none;
+  font-variant: initial;
+  line-height: 1;
+}
+
+.section-adv .swiper-container .swiper-button-next,
+.section-adv #main-carousel .swiper-button-next {
+  right: 10px;
+}
+
+.section-adv .swiper-container .swiper-button-next::after,
+.section-adv #main-carousel .swiper-button-next::after {
+  content: 'next';
+}
+
+.section-adv .swiper-container .swiper-button-prev,
+.section-adv #main-carousel .swiper-button-prev {
+  left: 10px;
+}
+
+.section-adv .swiper-container .swiper-button-prev::after,
+.section-adv #main-carousel .swiper-button-prev::after {
+  content: 'prev';
+}
+
+/* 确保轮播图容器可见 */
+.section-adv {
+  position: relative;
+  display: flex;
+}
+
+.section-adv .section-nav {
+  flex-shrink: 0;
+}
+
+.section-adv .swiper-container,
+.section-adv #main-carousel {
+  flex: 1;
+  min-height: 300px;
+}
+
+/* 移动端轮播图适配 */
+@media screen and (max-width: 768px) {
+  .section-adv {
+    flex-direction: column;
+  }
+  
+  .section-adv .swiper-container,
+  .section-adv #main-carousel {
+    width: 100% !important;
+    height: 200px;
+    margin-top: 20px;
+  }
+} 
