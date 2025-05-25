@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录注册功能测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-section h2 {
+            color: #c9483c;
+            border-bottom: 2px solid #c9483c;
+            padding-bottom: 10px;
+        }
+        .test-item {
+            margin: 15px 0;
+            padding: 10px;
+            background: #f8f9fa;
+            border-left: 4px solid #c9483c;
+        }
+        .status {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .status.success { background: #d4edda; color: #155724; }
+        .status.error { background: #f8d7da; color: #721c24; }
+        .status.info { background: #d1ecf1; color: #0c5460; }
+        button {
+            background: #c9483c;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #b03d33;
+        }
+        .data-display {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 10px;
+            margin: 10px 0;
+            font-family: monospace;
+            font-size: 12px;
+            white-space: pre-wrap;
+        }
+        .nav-links {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .nav-links a {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px 20px;
+            background: #c9483c;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .nav-links a:hover {
+            background: #b03d33;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 网易云阅读 - 登录注册功能测试</h1>
+    
+    <div class="nav-links">
+        <a href="index.html">返回首页</a>
+        <a href="login.html">登录页面</a>
+        <a href="register.html">注册页面</a>
+    </div>
+
+    <div class="test-section">
+        <h2>📊 当前状态检查</h2>
+        <div class="test-item">
+            <strong>登录状态：</strong>
+            <span id="loginStatus" class="status info">检查中...</span>
+        </div>
+        <div class="test-item">
+            <strong>当前用户：</strong>
+            <span id="currentUser">-</span>
+        </div>
+        <div class="test-item">
+            <strong>已注册用户数量：</strong>
+            <span id="userCount">0</span>
+        </div>
+        <button onclick="refreshStatus()">🔄 刷新状态</button>
+        <button onclick="clearAllData()">🗑️ 清除所有数据</button>
+    </div>
+
+    <div class="test-section">
+        <h2>👥 已注册用户列表</h2>
+        <div id="userList" class="data-display">暂无注册用户</div>
+        <button onclick="showUserList()">📋 显示用户列表</button>
+        <button onclick="addTestUser()">➕ 添加测试用户</button>
+    </div>
+
+    <div class="test-section">
+        <h2>🔐 登录状态信息</h2>
+        <div id="loginInfo" class="data-display">未登录</div>
+        <button onclick="showLoginInfo()">📄 显示登录信息</button>
+        <button onclick="simulateLogin()">🔑 模拟登录</button>
+        <button onclick="logout()">🚪 退出登录</button>
+    </div>
+
+    <div class="test-section">
+        <h2>🧪 功能测试</h2>
+        <div class="test-item">
+            <button onclick="testRegistration()">测试注册功能</button>
+            <button onclick="testLogin()">测试登录功能</button>
+            <button onclick="testValidation()">测试表单验证</button>
+        </div>
+        <div id="testResults" class="data-display">点击上方按钮开始测试...</div>
+    </div>
+
+    <div class="test-section">
+        <h2>🛒 购物车功能测试</h2>
+        <div class="test-item">
+            <h4>🎯 测试场景：</h4>
+            <ol>
+                <li><strong>未登录状态测试：</strong>
+                    <ul>
+                        <li>点击首页的"立即购买"按钮 → 应显示登录提示</li>
+                        <li>在详情页点击"加入购物车" → 应显示登录提示</li>
+                        <li>访问购物车页面 → 应显示空购物车或登录提示</li>
+                    </ul>
+                </li>
+                <li><strong>登录状态测试：</strong>
+                    <ul>
+                        <li>登录后点击"立即购买" → 正常跳转到详情页</li>
+                        <li>在详情页添加商品到购物车 → 成功添加</li>
+                        <li>不同用户的购物车应该是独立的</li>
+                    </ul>
+                </li>
+                <li><strong>购物车迁移测试：</strong>
+                    <ul>
+                        <li>未登录时添加商品（会提示登录）</li>
+                        <li>登录后应该看到购物车迁移提示</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+        <div class="test-item">
+            <button onclick="testCartLogin()">🧪 测试购物车登录验证</button>
+            <button onclick="testCartMigration()">🔄 测试购物车迁移</button>
+            <button onclick="showCartData()">📊 显示购物车数据</button>
+        </div>
+        <div id="cartTestResults" class="data-display">点击上方按钮开始测试...</div>
+    </div>
+
+    <div class="test-section">
+        <h2>📝 测试说明</h2>
+        <div class="test-item">
+            <h4>🎯 测试步骤：</h4>
+            <ol>
+                <li>点击"注册页面"链接，注册一个新用户</li>
+                <li>注册成功后会跳转到登录页面</li>
+                <li>使用注册的账号信息登录</li>
+                <li>登录成功后会跳转到首页</li>
+                <li>在首页顶部应该显示"你好，用户名"</li>
+                <li>点击"退出登录"可以退出</li>
+            </ol>
+        </div>
+        <div class="test-item">
+            <h4>📋 验证码信息：</h4>
+            <p>注册时验证码固定为：<strong>123456</strong></p>
+        </div>
+        <div class="test-item">
+            <h4>🔍 调试信息：</h4>
+            <p>打开浏览器开发者工具(F12)查看控制台日志获取详细信息</p>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script>
+        // 刷新状态显示
+        function refreshStatus() {
+            const loginStatus = checkLoginStatus();
+            const registeredUsers = getRegisteredUsers();
+            
+            // 更新登录状态
+            const statusEl = document.getElementById('loginStatus');
+            const userEl = document.getElementById('currentUser');
+            const countEl = document.getElementById('userCount');
+            
+            if (loginStatus.isLoggedIn) {
+                statusEl.textContent = '已登录';
+                statusEl.className = 'status success';
+                userEl.textContent = loginStatus.user.username || loginStatus.user.email;
+            } else {
+                statusEl.textContent = '未登录';
+                statusEl.className = 'status error';
+                userEl.textContent = '-';
+            }
+            
+            countEl.textContent = registeredUsers.length;
+        }
+
+        // 显示用户列表
+        function showUserList() {
+            const users = getRegisteredUsers();
+            const userListEl = document.getElementById('userList');
+            
+            if (users.length === 0) {
+                userListEl.textContent = '暂无注册用户';
+                return;
+            }
+            
+            let listText = '已注册用户列表：\n\n';
+            users.forEach((user, index) => {
+                listText += `${index + 1}. 用户名：${user.username}\n`;
+                listText += `   邮箱：${user.email}\n`;
+                listText += `   手机号：${user.phone}\n`;
+                listText += `   注册时间：${new Date(user.registerTime).toLocaleString()}\n\n`;
+            });
+            
+            userListEl.textContent = listText;
+        }
+
+        // 显示登录信息
+        function showLoginInfo() {
+            const loginStatus = checkLoginStatus();
+            const infoEl = document.getElementById('loginInfo');
+            
+            if (loginStatus.isLoggedIn) {
+                const info = `登录状态：已登录
+用户信息：
+- 用户名：${loginStatus.user.username || '未设置'}
+- 邮箱：${loginStatus.user.email || '未设置'}
+- 手机号：${loginStatus.user.phone || '未设置'}
+- 登录时间：${new Date(loginStatus.user.loginTime).toLocaleString()}
+
+存储信息：
+- Token：${localStorage.getItem('userToken')}
+- 记住登录：${localStorage.getItem('rememberLogin') || '否'}`;
+                infoEl.textContent = info;
+            } else {
+                infoEl.textContent = '当前未登录';
+            }
+        }
+
+        // 清除所有数据
+        function clearAllData() {
+            if (confirm('确定要清除所有用户数据吗？此操作不可恢复！')) {
+                localStorage.removeItem('registeredUsers');
+                localStorage.removeItem('userToken');
+                localStorage.removeItem('userInfo');
+                localStorage.removeItem('rememberLogin');
+                alert('所有数据已清除！');
+                refreshStatus();
+                showUserList();
+                showLoginInfo();
+            }
+        }
+
+        // 添加测试用户
+        function addTestUser() {
+            const users = getRegisteredUsers();
+            const testUser = {
+                username: '测试用户' + (users.length + 1),
+                email: `test${users.length + 1}@example.com`,
+                phone: `1391234567${users.length}`,
+                password: '123456',
+                registerTime: new Date().toISOString()
+            };
+            
+            users.push(testUser);
+            saveRegisteredUsers(users);
+            alert('测试用户添加成功！');
+            refreshStatus();
+            showUserList();
+        }
+
+        // 模拟登录
+        function simulateLogin() {
+            const users = getRegisteredUsers();
+            if (users.length === 0) {
+                alert('没有可用的用户，请先注册或添加测试用户！');
+                return;
+            }
+            
+            const user = users[0];
+            const userInfo = {
+                username: user.username,
+                email: user.email,
+                phone: user.phone,
+                loginTime: new Date().toISOString()
+            };
+            
+            localStorage.setItem('userToken', 'token_' + Date.now());
+            localStorage.setItem('userInfo', JSON.stringify(userInfo));
+            
+            alert(`模拟登录成功！用户：${user.username}`);
+            refreshStatus();
+            showLoginInfo();
+        }
+
+        // 测试注册功能
+        function testRegistration() {
+            const results = document.getElementById('testResults');
+            let testLog = '🧪 注册功能测试结果：\n\n';
+            
+            // 测试用户名验证
+            testLog += '1. 用户名验证测试：\n';
+            testLog += `   - 空用户名：${Auth.validateUsername('', 'test') ? '❌ 失败' : '✅ 通过'}\n`;
+            testLog += `   - 短用户名：${Auth.validateUsername('ab', 'test') ? '❌ 失败' : '✅ 通过'}\n`;
+            testLog += `   - 正常用户名：${Auth.validateUsername('测试用户', 'test') ? '✅ 通过' : '❌ 失败'}\n`;
+            
+            // 测试邮箱验证
+            testLog += '\n2. 邮箱验证测试：\n';
+            testLog += `   - 无效邮箱：${Auth.validateEmail('invalid', 'test') ? '❌ 失败' : '✅ 通过'}\n`;
+            testLog += `   - 有效邮箱：${Auth.validateEmail('test@example.com', 'test') ? '✅ 通过' : '❌ 失败'}\n`;
+            
+            // 测试手机号验证
+            testLog += '\n3. 手机号验证测试：\n';
+            testLog += `   - 无效手机号：${Auth.validatePhone('123', 'test') ? '❌ 失败' : '✅ 通过'}\n`;
+            testLog += `   - 有效手机号：${Auth.validatePhone('13912345678', 'test') ? '✅ 通过' : '❌ 失败'}\n`;
+            
+            testLog += '\n✅ 注册功能测试完成！';
+            results.textContent = testLog;
+        }
+
+        // 测试登录功能
+        function testLogin() {
+            const results = document.getElementById('testResults');
+            let testLog = '🔑 登录功能测试结果：\n\n';
+            
+            // 测试默认账号登录
+            const loginResult1 = Auth.performLogin({
+                email: 'test@example.com',
+                password: '123456'
+            });
+            testLog += `1. 默认邮箱登录：${loginResult1.success ? '✅ 成功' : '❌ 失败'}\n`;
+            
+            const loginResult2 = Auth.performLogin({
+                email: '13800138000',
+                password: '123456'
+            });
+            testLog += `2. 默认手机号登录：${loginResult2.success ? '✅ 成功' : '❌ 失败'}\n`;
+            
+            // 测试错误密码
+            const loginResult3 = Auth.performLogin({
+                email: 'test@example.com',
+                password: 'wrong'
+            });
+            testLog += `3. 错误密码登录：${loginResult3.success ? '❌ 失败' : '✅ 通过'}\n`;
+            
+            testLog += '\n✅ 登录功能测试完成！';
+            results.textContent = testLog;
+        }
+
+        // 测试表单验证
+        function testValidation() {
+            const results = document.getElementById('testResults');
+            let testLog = '📝 表单验证测试结果：\n\n';
+            
+            // 测试密码验证
+            testLog += '1. 密码验证：\n';
+            testLog += `   - 空密码：${Auth.validatePassword('', 'test') ? '❌ 失败' : '✅ 通过'}\n`;
+            testLog += `   - 短密码：${Auth.validatePassword('123', 'test') ? '❌ 失败' : '✅ 通过'}\n`;
+            testLog += `   - 正常密码：${Auth.validatePassword('123456', 'test') ? '✅ 通过' : '❌ 失败'}\n`;
+            
+            // 测试确认密码
+            testLog += '\n2. 确认密码验证：\n';
+            testLog += `   - 密码不匹配：${Auth.validateConfirmPassword('123456', '654321', 'test') ? '❌ 失败' : '✅ 通过'}\n`;
+            testLog += `   - 密码匹配：${Auth.validateConfirmPassword('123456', '123456', 'test') ? '✅ 通过' : '❌ 失败'}\n`;
+            
+            // 测试验证码
+            testLog += '\n3. 验证码验证：\n';
+            testLog += `   - 错误验证码：${Auth.validateVerifyCode('000000', 'test') ? '❌ 失败' : '✅ 通过'}\n`;
+            testLog += `   - 正确验证码：${Auth.validateVerifyCode('123456', 'test') ? '✅ 通过' : '❌ 失败'}\n`;
+            
+            testLog += '\n✅ 表单验证测试完成！';
+            results.textContent = testLog;
+        }
+
+        // 测试购物车登录验证
+        function testCartLogin() {
+            const results = document.getElementById('cartTestResults');
+            let testLog = '🛒 购物车登录验证测试结果：\n\n';
+            
+            const loginStatus = checkLoginStatus();
+            testLog += `当前登录状态：${loginStatus.isLoggedIn ? '已登录' : '未登录'}\n\n`;
+            
+            if (window.cart) {
+                // 测试购物车登录检查
+                const cartLoginStatus = window.cart.checkLoginStatus();
+                testLog += `购物车登录检查：${cartLoginStatus.isLoggedIn ? '✅ 已登录' : '❌ 未登录'}\n`;
+                
+                // 测试存储键生成
+                const storageKey = window.cart.getCartStorageKey();
+                testLog += `购物车存储键：${storageKey}\n`;
+                
+                // 测试购物车数据加载
+                const cartItems = window.cart.getItems();
+                testLog += `购物车商品数量：${cartItems.length}\n`;
+                
+                testLog += '\n📋 测试建议：\n';
+                if (!loginStatus.isLoggedIn) {
+                    testLog += '1. 当前未登录，可以测试点击"立即购买"按钮\n';
+                    testLog += '2. 应该会显示登录提示弹窗\n';
+                    testLog += '3. 点击"立即登录"会跳转到登录页面\n';
+                } else {
+                    testLog += '1. 当前已登录，可以正常添加商品到购物车\n';
+                    testLog += '2. 购物车数据会保存到用户专属存储\n';
+                    testLog += '3. 可以测试退出登录后的购物车清理\n';
+                }
+            } else {
+                testLog += '❌ 购物车系统未初始化\n';
+            }
+            
+            testLog += '\n✅ 购物车登录验证测试完成！';
+            results.textContent = testLog;
+        }
+
+        // 测试购物车迁移
+        function testCartMigration() {
+            const results = document.getElementById('cartTestResults');
+            let testLog = '🔄 购物车迁移测试结果：\n\n';
+            
+            if (window.cart) {
+                // 检查临时购物车
+                const guestItems = Utils.storage.get('shopping_cart_guest') || [];
+                testLog += `临时购物车商品数量：${guestItems.length}\n`;
+                
+                const loginStatus = checkLoginStatus();
+                if (loginStatus.isLoggedIn) {
+                    const userCartKey = window.cart.getCartStorageKey();
+                    const userItems = Utils.storage.get(userCartKey) || [];
+                    testLog += `用户购物车商品数量：${userItems.length}\n`;
+                    testLog += `用户购物车存储键：${userCartKey}\n`;
+                    
+                    if (guestItems.length > 0) {
+                        testLog += '\n🔄 执行购物车迁移测试...\n';
+                        window.cart.migrateGuestCart();
+                        testLog += '迁移完成，请查看页面提示信息\n';
+                    } else {
+                        testLog += '\n💡 提示：没有临时购物车数据需要迁移\n';
+                        testLog += '可以先退出登录，添加一些商品到临时购物车，再登录测试迁移功能\n';
+                    }
+                } else {
+                    testLog += '\n💡 提示：当前未登录，无法测试迁移功能\n';
+                    testLog += '请先登录后再测试购物车迁移\n';
+                }
+            } else {
+                testLog += '❌ 购物车系统未初始化\n';
+            }
+            
+            testLog += '\n✅ 购物车迁移测试完成！';
+            results.textContent = testLog;
+        }
+
+        // 显示购物车数据
+        function showCartData() {
+            const results = document.getElementById('cartTestResults');
+            let testLog = '📊 购物车数据详情：\n\n';
+            
+            const loginStatus = checkLoginStatus();
+            testLog += `登录状态：${loginStatus.isLoggedIn ? '已登录' : '未登录'}\n`;
+            
+            if (loginStatus.isLoggedIn) {
+                testLog += `当前用户：${loginStatus.user.username || loginStatus.user.email}\n`;
+            }
+            
+            testLog += '\n🗄️ 存储数据：\n';
+            
+            // 显示所有购物车相关的存储数据
+            const allKeys = Object.keys(localStorage).filter(key => key.includes('shopping_cart'));
+            if (allKeys.length > 0) {
+                allKeys.forEach(key => {
+                    const data = Utils.storage.get(key) || [];
+                    testLog += `${key}: ${data.length} 件商品\n`;
+                    if (data.length > 0) {
+                        data.forEach((item, index) => {
+                            testLog += `  ${index + 1}. ${item.title} (数量: ${item.quantity})\n`;
+                        });
+                    }
+                });
+            } else {
+                testLog += '暂无购物车数据\n';
+            }
+            
+            // 显示当前购物车状态
+            if (window.cart) {
+                const currentItems = window.cart.getItems();
+                testLog += `\n🛒 当前购物车：${currentItems.length} 件商品\n`;
+                testLog += `总数量：${window.cart.getTotalQuantity()}\n`;
+                testLog += `总价格：${window.cart.getTotalPrice()}\n`;
+            }
+            
+            results.textContent = testLog;
+        }
+
+        // 获取已注册用户（复制auth.js中的函数）
+        function getRegisteredUsers() {
+            try {
+                const users = localStorage.getItem('registeredUsers');
+                return users ? JSON.parse(users) : [];
+            } catch (e) {
+                console.error('获取注册用户列表失败:', e);
+                return [];
+            }
+        }
+
+        // 保存已注册用户（复制auth.js中的函数）
+        function saveRegisteredUsers(users) {
+            try {
+                localStorage.setItem('registeredUsers', JSON.stringify(users));
+            } catch (e) {
+                console.error('保存注册用户列表失败:', e);
+            }
+        }
+
+        // 页面加载时初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            refreshStatus();
+            showUserList();
+            showLoginInfo();
+        });
+    </script>
+</body>
+</html> 

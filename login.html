@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>用户登录 - 网易云阅读</title>
+    <meta name="description" content="网易云阅读用户登录页面">
+    <meta name="keywords" content="网易云阅读,登录,用户中心">
+    <link rel="stylesheet" href="css/sass/index.css" />
+    <link rel="stylesheet" href="css/sass/auth.css" />
+    <link rel="stylesheet" href="css/sass/responsive.css" />
+    <link rel="stylesheet" type="text/css" href="iconf/iconfont.css" />
+</head>
+<body>
+    <!-- 头部导航 -->
+    <div class="head">
+        <div class="area">
+            <header>
+                <ul class="head-nav">
+                    <li>
+                        <a href="index.html" title="网易云阅读">网易云阅读</a>
+                    </li>
+                    <li><span>|</span></li>
+                    <li>
+                        <a href="#" title="国风中文网">国风中文网</a>
+                    </li>
+                    <li><span>|</span></li>
+                    <li>
+                        <a href="#" title="采薇书院">采薇书院</a>
+                    </li>
+                    <li><span>|</span></li>
+                    <li>
+                        <a href="#" title="从电脑上导出书籍">从电脑上导出书籍</a>
+                    </li>
+                    <li><span>|</span></li>
+                    <li>
+                        <a href="#" title="公众号">公众号</a>
+                    </li>
+                    <li><span>|</span></li>
+                    <li>
+                        <a href="#" title="渠道推广平台">渠道推广平台</a>
+                    </li>
+                </ul>
+                <div class="login">
+                    <ul>
+                        <li>
+                            <a href="register.html">注册</a>
+                        </li>
+                        <li><span>|</span></li>
+                        <li>
+                            <a href="#">举报</a>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+        </div>
+    </div>
+
+    <!-- 主要内容区域 -->
+    <section class="auth-section">
+        <div class="area">
+            <!-- Logo区域 -->
+            <div class="auth-header">
+                <div class="logo">
+                    <h1><a href="index.html">网易云阅读</a></h1>
+                </div>
+                <div class="auth-nav">
+                    <span>已有账号？</span>
+                    <a href="register.html" class="switch-link">立即注册</a>
+                </div>
+            </div>
+
+            <!-- 登录表单 -->
+            <div class="auth-container">
+                <div class="auth-box">
+                    <div class="auth-title">
+                        <h2>用户登录</h2>
+                        <p>登录后享受更多阅读乐趣</p>
+                    </div>
+                    
+                    <form class="auth-form" id="loginForm">
+                        <div class="form-group">
+                            <label for="email">邮箱/手机号</label>
+                            <input type="text" id="email" name="email" placeholder="请输入邮箱或手机号" required>
+                            <span class="error-msg" id="emailError"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="password">密码</label>
+                            <input type="password" id="password" name="password" placeholder="请输入密码" required>
+                            <span class="error-msg" id="passwordError"></span>
+                        </div>
+                        
+                        <div class="form-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="remember" name="remember">
+                                <span class="checkmark"></span>
+                                记住我
+                            </label>
+                            <a href="#" class="forgot-link">忘记密码？</a>
+                        </div>
+                        
+                        <button type="submit" class="auth-btn">登录</button>
+                        
+                        <div class="divider">
+                            <span>或</span>
+                        </div>
+                        
+                        <div class="social-login">
+                            <button type="button" class="social-btn wechat-btn">
+                                <i class="iconfont icon-weixin"></i>
+                                微信登录
+                            </button>
+                            <button type="button" class="social-btn qq-btn">
+                                <i class="iconfont icon-qq"></i>
+                                QQ登录
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- 侧边信息 -->
+                <div class="auth-side">
+                    <div class="side-content">
+                        <h3>网易云阅读</h3>
+                        <ul class="features">
+                            <li>
+                                <i class="iconfont icon-book"></i>
+                                <span>海量正版图书</span>
+                            </li>
+                            <li>
+                                <i class="iconfont icon-star"></i>
+                                <span>个性化推荐</span>
+                            </li>
+                            <li>
+                                <i class="iconfont icon-cloud"></i>
+                                <span>云端同步阅读</span>
+                            </li>
+                            <li>
+                                <i class="iconfont icon-gift"></i>
+                                <span>新用户专享福利</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="auth-footer">
+        <div class="area">
+            <div class="footer-content">
+                <p>
+                    <a href="#">网易简介</a><span class="sep">|</span>
+                    <a href="#">公司简介</a><span class="sep">|</span>
+                    <a href="#">客户服务</a><span class="sep">|</span>
+                    <a href="#">相关法律</a><span class="sep">|</span>
+                    <a href="#">意见反馈</a><span class="sep">|</span>
+                    <a href="#">帮助中心</a>
+                </p>
+                <p class="copyright">
+                    网易公司版权所有©1997-<span id="j-year">2024</span> 
+                    网络出版服务许可证（总）网出证（粤）字第030号
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 消息提示 -->
+    <div id="message" class="message hidden"></div>
+
+    <!-- JavaScript -->
+    <script src="js/jquery-2.1.0.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        // 设置当前年份
+        document.getElementById('j-year').textContent = new Date().getFullYear();
+        
+        // 初始化登录功能
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof Auth !== 'undefined') {
+                Auth.initLogin();
+            }
+        });
+    </script>
+</body>
+</html> 

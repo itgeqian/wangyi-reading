@@ -176,7 +176,8 @@ a {
   padding-top: 40px;
   box-sizing: border-box;
   display: flex;
-  justify-content: space-between; }
+  justify-content: space-between;
+  align-items: center; }
   .nav-seach h1 {
     display: block;
     height: 36px;
@@ -187,39 +188,6 @@ a {
       display: block;
       background: url(../../img/logo.png) no-repeat 0 0;
       text-indent: -9999px; }
-
-/*搜索框*/
-.search-box .search {
-  float: left;
-  box-sizing: border-box;
-  padding: 10px;
-  width: 300px;
-  height: 36px;
-  outline: none;
-  margin-top: 2px; }
-
-.search-box .btn-seach {
-  float: left;
-  outline: none;
-  border: none;
-  width: 40px;
-  height: 40px;
-  background: url(../../img/logo.png) no-repeat 0 -54px; }
-
-.search-box .showBox {
-  overflow: hidden;
-  border: 1px solid #ccc;
-  position: absolute;
-  background: #fff;
-  width: 300px;
-  display: none;
-  top: 113px;
-  box-shadow: 0 5px 7px #ccc;
-  z-index: 9999;
-  box-sizing: border-box;
-  display: block; }
-  .search-box .showBox li {
-    margin: 5px 10px; }
 
 .clouds {
   font-size: 12px; }

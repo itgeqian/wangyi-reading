@@ -3,36 +3,26 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>购物车 - 网易云阅读</title>
+		<link rel="stylesheet" href="css/sass/shopCar.css" />
+		<link rel="stylesheet" href="css/sass/cart-modern.css" />
+		<link rel="stylesheet" href="css/sass/public.css" />
+		<link rel="stylesheet" type="text/css" href="iconf/iconfont.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.css">
 	</head>
-	<link rel="stylesheet" href="css/sass/shopCar.css" />
-	<link rel="stylesheet" type="text/css" href="iconf/iconfont.css" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.css">
-
-	<body>
+	<body class="cart-page">
 		<!--头部-->
 		<div class="headerFix">
 			<div class="area">
-				<h2><a href="#">网易阅读</a></h2>
+				<h2><a href="index.html">网易阅读</a></h2>
 				<ul>
-					<li>
-						<a href="#">首页</a>
-					</li>
-					<li>
-						<a href="#">出版图书</a>
-					</li>
-					<li>
-						<a href="#">国风中文网</a>
-					</li>
-					<li>
-						<a href="#">采薇书院</a>
-					</li>
-					<li>
-						<a href="#">排行榜</a>
-					</li>
-					<li>
-						<a href="#">客户端下载</a>
-					</li>
+					<li><a href="index.html">首页</a></li>
+					<li><a href="#">出版图书</a></li>
+					<li><a href="#">国风中文网</a></li>
+					<li><a href="#">采薇书院</a></li>
+					<li><a href="#">排行榜</a></li>
+					<li><a href="#">客户端下载</a></li>
 				</ul>
 				<div class="herdFix-search">
 					<input type="text" class="search" placeholder="请输入关键字" />
@@ -45,71 +35,26 @@
 			<div class="area">
 				<header>
 					<ul class="head-nav">
-						<li>
-							<a href="#" title="网易云阅读">网易云阅读</a>
-						</li>
+						<li><a href="#" title="网易云阅读">网易云阅读</a></li>
 						<li><span>|</span></li>
-						<li>
-							<a href="#" title="国风中文网">国风中文网</a>
-						</li>
+						<li><a href="#" title="国风中文网">国风中文网</a></li>
 						<li><span>|</span></li>
-						<li>
-							<a href="#" title="采薇书院">采薇书院</a>
-						</li>
+						<li><a href="#" title="采薇书院">采薇书院</a></li>
 						<li><span>|</span></li>
-						<li>
-							<a href="#" title="从电脑上导出书籍">从电脑上导出书籍</a>
-						</li>
+						<li><a href="#" title="从电脑上导出书籍">从电脑上导出书籍</a></li>
 						<li><span>|</span></li>
-						<li>
-							<a href="#" title="公众号">公众号</a>
-						</li>
+						<li><a href="#" title="公众号">公众号</a></li>
 						<li><span>|</span></li>
-						<li>
-							<a href="#" title="渠道推广平台">渠道推广平台</a>
-						</li>
+						<li><a href="#" title="渠道推广平台">渠道推广平台</a></li>
 					</ul>
 					<div class="login">
 						<ul>
-							<li>
-								<a href="#">登陆<i class="triangle"></i></a>
-							</li>
+							<li><a href="login.html">登陆<i class="triangle"></i></a></li>
 							<li><span>|</span></li>
-							<li>
-								<a href="register.html">注册</a>
-							</li>
+							<li><a href="register.html">注册</a></li>
 							<li><span>|</span></li>
-							<li>
-								<a href="#">举报</a>
-							</li>
+							<li><a href="#">举报</a></li>
 						</ul>
-					</div>
-					<div class="login-box">
-						<div class="login-title">
-							<a href="#">关闭</a>
-							<h4>网易邮箱登陆</h4>
-						</div>
-						<div>
-							<div>
-								<form action="" method="post">
-									<div>
-										<input type="email" placeholder="邮箱账号(包含手机邮箱)" />
-									</div>
-									<div>
-										<input type="password/" placeholder="6-16位密码,区分大小写" />
-									</div>
-									<div>
-										
-									</div>
-									<div>
-										<button class="login-btn">登陆</button>
-									</div>
-								</form>
-							</div>
-							<div>
-
-							</div>
-						</div>
 					</div>
 				</header>
 			</div>
@@ -119,19 +64,66 @@
 			<div class="area">
 				<div class="nav-seach">
 					<div class="logo">
-						<h1><a href="#">网易云阅读</a></h1>
-					</div>
-					<div class="search-box">
-						<input type="text" class="search" placeholder="请输入关键字" />
-						<ul class="showBox"></ul>
-						<button class="btn-seach"></button>
+						<h1><a href="index.html">网易云阅读</a></h1>
 					</div>
 					<div class="clouds">
+						<a href="shopCar.html"><i class="iconfont icon-gouwuche"></i>购物车</a>
 					</div>
 				</div>
 				<div class="nav-nav">
 				</div>
-				<div class="shopBox">
+				
+				<!-- 现代化购物车容器 -->
+				<div class="cart-container">
+					<div class="cart-header">
+						<h1>我的购物车</h1>
+						<p>精选好书，等您带回家</p>
+					</div>
+					
+					<!-- 购物车操作栏 -->
+					<div class="operation">
+						<div style="display: flex; gap: 20px; align-items: center; padding: 20px 30px; background: #f8f9fa; border-bottom: 1px solid #eee;">
+							<a href="#" class="tab-link active" data-tab="cart">
+								我的书籍 <span class="book-num" style="color: #c9483c; font-weight: 600;">0</span>
+							</a>
+							<a href="#" class="tab-link" data-tab="deleted">
+								已删除的书籍 <span class="deleted-num" style="color: #666; font-weight: 600;">0</span>
+							</a>
+							<div style="margin-left: auto; display: flex; gap: 15px; align-items: center;">
+								<a href="index.html" class="btn-home" style="padding: 8px 16px; font-size: 14px; text-decoration: none; background: #28a745; color: white; border-radius: 6px; transition: all 0.2s ease;">
+									<i class="iconfont icon-home" style="margin-right: 5px;"></i>返回首页
+								</a>
+								<button class="btn-secondary view-deleted-btn" style="padding: 8px 16px; font-size: 14px;">查看已删除</button>
+							</div>
+						</div>
+					</div>
+					
+					<!-- 购物车内容区 -->
+					<div class="cart-content">
+						<!-- 购物车商品列表 -->
+						<div class="cart-items-container">
+							<!-- 购物车商品将在这里动态生成 -->
+						</div>
+					</div>
+					
+					<!-- 已删除商品容器 -->
+					<div class="deleted-items-container" style="display: none;">
+						<div class="cart-header" style="background: #6c757d;">
+							<h2 style="margin: 0; font-size: 20px;">已删除的书籍</h2>
+							<p style="margin: 10px 0 0; opacity: 0.9;">可以恢复或永久删除</p>
+						</div>
+						<div class="deleted-items-list">
+							<!-- 已删除商品将在这里动态生成 -->
+						</div>
+						<div class="deleted-actions" style="padding: 20px 30px; background: #f8f9fa; border-top: 1px solid #eee;">
+							<button class="btn-secondary restore-all-btn" style="margin-right: 15px;">恢复全部</button>
+							<button class="btn-danger clear-deleted-btn" style="background: #dc3545; color: white;">清空已删除</button>
+						</div>
+					</div>
+				</div>
+				
+				<!-- 保留原有的shopBox结构以兼容旧代码 -->
+				<div class="shopBox" style="display: none;">
 					<div class="operation">
 						<div>
 							<a href="#">我的书籍<i class="book-num" style="color: #000;">0</i></a>
@@ -198,10 +190,10 @@
 								<a href="">国家人文</a>
 								<a href="">南方人物</a>
 								<a href="">南都周刊</a>
-								<a href="">博客天下</a>
-								<a href="">环球科学</a>
-								<a href="">南都娱乐</a>
-								<a href="">凤凰周刊</a>
+								<a href="">财经</a>
+								<a href="">读者</a>
+								<a href="">意林</a>
+								<a href="">青年文摘</a>
 								<a href="">更多</a>
 							</p>
 						</li>
@@ -235,13 +227,82 @@
 
 		</footer>
 	</body>
-	<script src="js/shopCar.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.js"></script>
+	<!-- 添加必要的JavaScript文件 -->
 	<script src="js/jquery-2.1.0.js"></script>
+	<script src="js/utils.js"></script>
+	<script src="js/auth.js"></script>
+	<script src="js/cart.js"></script>
+	<script src="js/shopCar.js"></script>
 	<script src="js/Jsonp.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.js"></script>
 	<script>
-		showText.init(".search-box");
-		carShop.init()
+		// 页面初始化
+		document.addEventListener('DOMContentLoaded', function() {
+			console.log('购物车页面加载完成');
+			
+			// 更新用户登录状态显示
+			if (typeof updateUserStatus !== 'undefined') {
+				updateUserStatus();
+			}
+			
+			// 初始化搜索功能
+			if (typeof showText !== 'undefined') {
+				showText.init(".search-box");
+			}
+			
+			// 初始化旧的购物车功能（兼容性）
+			if (typeof carShop !== 'undefined') {
+				carShop.init();
+			}
+			
+			// 初始化现代化购物车显示
+			if (window.cart) {
+				window.cart.updateCartDisplay();
+			}
+			
+			// 绑定标签切换事件
+			document.querySelectorAll('.tab-link').forEach(link => {
+				link.addEventListener('click', function(e) {
+					e.preventDefault();
+					
+					// 移除所有active类
+					document.querySelectorAll('.tab-link').forEach(l => l.classList.remove('active'));
+					// 添加active类到当前链接
+					this.classList.add('active');
+					
+					const tab = this.dataset.tab;
+					const cartContainer = document.querySelector('.cart-items-container').parentElement;
+					const deletedContainer = document.querySelector('.deleted-items-container');
+					
+					if (tab === 'cart') {
+						cartContainer.style.display = 'block';
+						deletedContainer.style.display = 'none';
+					} else if (tab === 'deleted') {
+						cartContainer.style.display = 'none';
+						deletedContainer.style.display = 'block';
+						// 更新已删除商品显示
+						if (window.shopCarPage) {
+							window.shopCarPage.updateDeletedItemsDisplay();
+						}
+					}
+				});
+			});
+			
+			// 绑定已删除商品操作按钮
+			document.addEventListener('click', function(e) {
+				if (e.target.classList.contains('restore-all-btn')) {
+					if (window.shopCarPage) {
+						window.shopCarPage.restoreAllItems();
+					}
+				}
+				
+				if (e.target.classList.contains('clear-deleted-btn')) {
+					if (window.shopCarPage) {
+						window.shopCarPage.clearDeletedItems();
+					}
+				}
+			});
+		});
 	</script>
 
 </html>

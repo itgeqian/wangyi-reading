@@ -68,12 +68,12 @@
         <div class="area">
             <div class="nav-seach">
                 <div class="logo">
-                    <h1><a href="#">网易云阅读</a></h1>
+                    <h1><a href="index.html">网易云阅读</a></h1>
                 </div>
-                <div class="search-box">
-                    <input type="text" class="search" placeholder="请输入关键字" />
-                    <ul class="showBox"></ul>
-                    <button class="btn-seach"></button>
+                <div class="page-actions">
+                    <a href="index.html" class="btn-home">
+                        <i class="iconfont icon-home"></i>返回首页
+                    </a>
                 </div>
                 <div class="clouds">
                     <a href="shopCar.html"><i class="iconfont icon-gouwuche"></i>购物车</a>
@@ -514,17 +514,37 @@
     </div>
 </body>
 <script src="js/Ajax.js"></script>
+<!--<script src="json/json.json"></script>-->
 <script src="js/jquery-2.1.0.js"></script>
 <script src="js/utils.js"></script>
-<script src="js/cart.js"></script>
-<script src="js/indx.js"></script>
-<script src="js/Jsonp.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.js"></script>
 <script src="js/api.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/auth.js"></script>
 <script src="js/details.js"></script>
+<script src="js/Jsonp.js"></script>
 <script>
-	toTop.init();
-	shopCar.init();
+	// 页面加载完成后初始化
+	document.addEventListener('DOMContentLoaded', function() {
+		console.log('详情页加载完成');
+		
+		// 更新用户登录状态显示
+		if (typeof updateUserStatus !== 'undefined') {
+			updateUserStatus();
+			console.log('用户状态更新完成');
+		}
+		
+		// 初始化商品详情
+		if (typeof shopCar !== 'undefined') {
+			shopCar.init();
+			console.log('商品详情初始化完成');
+		}
+		
+		// 初始化评论功能
+		if (typeof showContent !== 'undefined') {
+			showContent.init();
+			console.log('评论功能初始化完成');
+		}
+	});
 </script>
 
 </html>

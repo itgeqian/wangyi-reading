@@ -71,22 +71,18 @@ var shopCar = (function() {
 					
 					// 添加到购物车
 					if (window.cart && currentBook) {
-						window.cart.addItem(currentBook);
+						const addResult = window.cart.addItem(currentBook);
 						
-						// 更新按钮状态
-						$shopBtn.textContent = '已在购物车';
-						$shoppingCar.classList.add('in-cart');
-						
-						// 显示成功消息
-						Utils.showMessage(`《${currentBook.title}》已成功加入购物车！`, 'success');
-						
-						// 3秒后提供跳转选项
-						setTimeout(() => {
-							const goToCart = confirm('是否立即查看购物车？');
-							if (goToCart) {
-								window.location.href = 'shopCar.html';
-							}
-						}, 1500);
+						// 只有成功添加到购物车才更新按钮状态
+						if (addResult) {
+							// 更新按钮状态
+							$shopBtn.textContent = '已在购物车';
+							$shoppingCar.classList.add('in-cart');
+							
+							// 购物车系统会自动显示美观的成功弹窗
+							// 不需要额外的确认弹窗
+						}
+						// 如果addResult为false，说明用户未登录，购物车系统会自动显示登录提示
 					} else {
 						Utils.showMessage('购物车系统未初始化，请刷新页面重试', 'error');
 					}

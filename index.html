@@ -76,7 +76,7 @@
 					<div class="login">
 						<ul>
 							<li>
-								<a href="#">登陆<i class="triangle"></i></a>
+								<a href="login.html">登陆<i class="triangle"></i></a>
 							</li>
 							<li><span>|</span></li>
 							<li>
@@ -907,6 +907,7 @@
 	<script src="js/utils.js"></script>
 	<script src="js/api.js"></script>
 	<script src="js/cart.js"></script>
+	<script src="js/auth.js"></script>
 	<script src="js/index.js"></script>
 	<script src="js/Jsonp.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.js"></script>
@@ -914,6 +915,12 @@
 		// 初始化函数
 		function initializeApp() {
 			console.log('开始初始化应用...');
+			
+			// 检查并更新用户登录状态
+			if (typeof updateUserStatus !== 'undefined') {
+				updateUserStatus();
+				console.log('用户状态更新完成');
+			}
 			
 			// 初始化搜索功能
 			if (typeof showText !== 'undefined') {

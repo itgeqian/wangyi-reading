@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>用户注册 - 网易云阅读</title>
+    <meta name="description" content="网易云阅读用户注册页面">
+    <meta name="keywords" content="网易云阅读,注册,新用户">
+    <link rel="stylesheet" href="css/sass/index.css" />
+    <link rel="stylesheet" href="css/sass/auth.css" />
+    <link rel="stylesheet" href="css/sass/responsive.css" />
+    <link rel="stylesheet" type="text/css" href="iconf/iconfont.css" />
+</head>
+<body>
+    <!-- 头部导航 -->
+    <div class="head">
+        <div class="area">
+            <header>
+                <ul class="head-nav">
+                    <li>
+                        <a href="index.html" title="网易云阅读">网易云阅读</a>
+                    </li>
+                    <li><span>|</span></li>
+                    <li>
+                        <a href="#" title="国风中文网">国风中文网</a>
+                    </li>
+                    <li><span>|</span></li>
+                    <li>
+                        <a href="#" title="采薇书院">采薇书院</a>
+                    </li>
+                    <li><span>|</span></li>
+                    <li>
+                        <a href="#" title="从电脑上导出书籍">从电脑上导出书籍</a>
+                    </li>
+                    <li><span>|</span></li>
+                    <li>
+                        <a href="#" title="公众号">公众号</a>
+                    </li>
+                    <li><span>|</span></li>
+                    <li>
+                        <a href="#" title="渠道推广平台">渠道推广平台</a>
+                    </li>
+                </ul>
+                <div class="login">
+                    <ul>
+                        <li>
+                            <a href="login.html">登录</a>
+                        </li>
+                        <li><span>|</span></li>
+                        <li>
+                            <a href="#">举报</a>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+        </div>
+    </div>
+
+    <!-- 主要内容区域 -->
+    <section class="auth-section">
+        <div class="area">
+            <!-- Logo区域 -->
+            <div class="auth-header">
+                <div class="logo">
+                    <h1><a href="index.html">网易云阅读</a></h1>
+                </div>
+                <div class="auth-nav">
+                    <span>已有账号？</span>
+                    <a href="login.html" class="switch-link">立即登录</a>
+                </div>
+            </div>
+
+            <!-- 注册表单 -->
+            <div class="auth-container">
+                <div class="auth-box">
+                    <div class="auth-title">
+                        <h2>用户注册</h2>
+                        <p>注册成功即可享受海量图书资源</p>
+                    </div>
+                    
+                    <form class="auth-form" id="registerForm">
+                        <div class="form-group">
+                            <label for="username">用户名</label>
+                            <input type="text" id="username" name="username" placeholder="请输入用户名（3-20个字符）" required>
+                            <span class="error-msg" id="usernameError"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">邮箱</label>
+                            <input type="email" id="email" name="email" placeholder="请输入邮箱地址" required>
+                            <span class="error-msg" id="emailError"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">手机号</label>
+                            <input type="tel" id="phone" name="phone" placeholder="请输入手机号码" required>
+                            <span class="error-msg" id="phoneError"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="password">密码</label>
+                            <input type="password" id="password" name="password" placeholder="请输入密码（6-20位）" required>
+                            <span class="error-msg" id="passwordError"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="confirmPassword">确认密码</label>
+                            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="请再次输入密码" required>
+                            <span class="error-msg" id="confirmPasswordError"></span>
+                        </div>
+                        
+                        <div class="form-group verification-group">
+                            <label for="verifyCode">验证码</label>
+                            <div class="verify-input">
+                                <input type="text" id="verifyCode" name="verifyCode" placeholder="请输入验证码" required>
+                                <button type="button" class="verify-btn" id="sendVerifyCode">发送验证码</button>
+                            </div>
+                            <span class="error-msg" id="verifyCodeError"></span>
+                        </div>
+                        
+                        <div class="form-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="agreement" name="agreement" required>
+                                <span class="checkmark"></span>
+                                我已阅读并同意
+                                <a href="#" class="agreement-link">《用户协议》</a>
+                                和
+                                <a href="#" class="agreement-link">《隐私政策》</a>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="auth-btn">注册</button>
+                        
+                        <div class="divider">
+                            <span>或</span>
+                        </div>
+                        
+                        <div class="social-login">
+                            <button type="button" class="social-btn wechat-btn">
+                                <i class="iconfont icon-weixin"></i>
+                                微信注册
+                            </button>
+                            <button type="button" class="social-btn qq-btn">
+                                <i class="iconfont icon-qq"></i>
+                                QQ注册
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- 侧边信息 -->
+                <div class="auth-side">
+                    <div class="side-content">
+                        <h3>新用户专享</h3>
+                        <ul class="benefits">
+                            <li>
+                                <i class="iconfont icon-gift"></i>
+                                <div>
+                                    <strong>注册礼包</strong>
+                                    <span>新用户免费畅读5天</span>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="iconfont icon-book"></i>
+                                <div>
+                                    <strong>海量图书</strong>
+                                    <span>10万+原创小说，8万+经典出版</span>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="iconfont icon-star"></i>
+                                <div>
+                                    <strong>个性推荐</strong>
+                                    <span>AI智能推荐，发现你的专属好书</span>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="iconfont icon-cloud"></i>
+                                <div>
+                                    <strong>多端同步</strong>
+                                    <span>手机、电脑、平板无缝阅读</span>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        <div class="download-app">
+                            <h4>下载客户端</h4>
+                            <div class="qr-code">
+                                <img src="img/qr-code.png" alt="下载二维码" onerror="this.style.display='none'">
+                                <p>扫码下载APP</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="auth-footer">
+        <div class="area">
+            <div class="footer-content">
+                <p>
+                    <a href="#">网易简介</a><span class="sep">|</span>
+                    <a href="#">公司简介</a><span class="sep">|</span>
+                    <a href="#">客户服务</a><span class="sep">|</span>
+                    <a href="#">相关法律</a><span class="sep">|</span>
+                    <a href="#">意见反馈</a><span class="sep">|</span>
+                    <a href="#">帮助中心</a>
+                </p>
+                <p class="copyright">
+                    网易公司版权所有©1997-<span id="j-year">2024</span> 
+                    网络出版服务许可证（总）网出证（粤）字第030号
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 消息提示 -->
+    <div id="message" class="message hidden"></div>
+
+    <!-- JavaScript -->
+    <script src="js/jquery-2.1.0.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        // 设置当前年份
+        document.getElementById('j-year').textContent = new Date().getFullYear();
+        
+        // 初始化注册功能
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof Auth !== 'undefined') {
+                Auth.initRegister();
+            }
+        });
+    </script>
+</body>
+</html> 
