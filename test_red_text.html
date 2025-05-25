@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>分类栏红色文字测试</title>
+    <link rel="stylesheet" href="css/sass/index.css" />
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-info {
+            background: #e8f4fd;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border-left: 4px solid #2196F3;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .category-demo {
+            display: inline-block;
+            margin: 10px;
+            vertical-align: top;
+        }
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+            border: 1px solid #ffeaa7;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>分类栏红色文字测试页面</h1>
+        
+        <div class="test-info">
+            <h3>🎯 测试目标</h3>
+            <ul>
+                <li>验证特定文字是否显示为红色</li>
+                <li>检查红色文字的颜色是否为 #c9483c</li>
+                <li>确认红色文字在整体布局中的协调性</li>
+                <li>测试鼠标悬浮效果是否正常</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h3>分类菜单红色文字效果</h3>
+            <div class="category-demo">
+                <div class="section-nav" style="position: relative;">
+                    <ul>
+                        <li class="nav-category">
+                            <div class="category-main">
+                                <span class="category-title">国风中文网</span>
+                                <span class="expand-arrow">▶</span>
+                            </div>
+                            <div class="category-content">
+                                <p>都市生活  |  <span style="color: #c9483c;">官场职场</span>  |  玄幻仙侠</p>
+                                <p>悬疑探险  |  灵异恐怖  |  短篇小说</p>
+                            </div>
+                            <div class="category-dropdown">
+                                <div class="dropdown-content">
+                                    <div class="category-section">
+                                        <a href="#" class="category-link">科幻奇幻</a>
+                                        <a href="#" class="category-link">军事谍战</a>
+                                        <a href="#" class="category-link">同人网游</a>
+                                        <a href="#" class="category-link">历史传奇</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-category">
+                            <div class="category-main">
+                                <span class="category-title">采薇书院</span>
+                                <span class="expand-arrow">▶</span>
+                            </div>
+                            <div class="category-content">
+                                <p>浪漫青春 | <span style="color: #c9483c;">都市言情</span> | 古风古韵</p>
+                                <p>穿越架空 | <span style="color: #c9483c;">宫斗宅斗</span> | 种田重生</p>
+                            </div>
+                            <div class="category-dropdown">
+                                <div class="dropdown-content">
+                                    <div class="category-section">
+                                        <a href="#" class="category-link">短篇美文</a>
+                                        <a href="#" class="category-link">仙侠幻情</a>
+                                        <a href="#" class="category-link">灵异推理</a>
+                                        <a href="#" class="category-link">同人作品</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-category">
+                            <div class="category-main">
+                                <span class="category-title">图书</span>
+                                <span class="expand-arrow">▶</span>
+                            </div>
+                            <div class="category-content">
+                                <p>小说作品 | 人文社科 | 成功励志</p>
+                                <p>经济管理 | 品质生活 | 计算机</p>
+                            </div>
+                            <div class="category-dropdown">
+                                <div class="dropdown-content">
+                                    <div class="category-section">
+                                        <a href="#" class="category-link">文学作品</a>
+                                        <a href="#" class="category-link">两性情感</a>
+                                        <a href="#" class="category-link">亲子少儿</a>
+                                    </div>
+                                    <div class="category-section">
+                                        <a href="#" class="category-link">培训考试</a>
+                                        <a href="#" class="category-link">杂志期刊</a>
+                                        <a href="#" class="category-link">外文外版</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-category no-dropdown">
+                            <div class="category-main">
+                                <span class="category-title">客户端APP下载</span>
+                            </div>
+                            <div class="category-content">
+                                <p class="app-title"><span style="color: #c9483c;">新用户全场免费畅读10天</span></p>
+                                <p>10w+原创小说 | 8w+经典出版</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>红色文字检查清单</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div>
+                    <h4>✅ 应该显示为红色的文字：</h4>
+                    <ul>
+                        <li><span class="highlight">国风中文网</span>：官场职场</li>
+                        <li><span class="highlight">采薇书院</span>：都市言情</li>
+                        <li><span class="highlight">采薇书院</span>：宫斗宅斗</li>
+                        <li><span class="highlight">客户端APP下载</span>：新用户全场免费畅读10天</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>📋 检查要点：</h4>
+                    <ul>
+                        <li>红色颜色值：#c9483c</li>
+                        <li>字体粗细：正常（不加粗）</li>
+                        <li>与其他文字协调</li>
+                        <li>悬浮效果正常</li>
+                        <li>折叠区正常显示</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>颜色验证工具</h3>
+            <button onclick="checkRedText()" style="padding: 10px 20px; background: #c9483c; color: white; border: none; border-radius: 4px; cursor: pointer;">检查红色文字</button>
+            <button onclick="window.open('index.html', '_blank')" style="padding: 10px 20px; background: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; margin-left: 10px;">打开完整首页</button>
+            
+            <div id="color-result" style="margin-top: 15px; padding: 10px; background: #f8f9fa; border-radius: 4px; display: none;">
+                <h4>颜色检查结果：</h4>
+                <div id="color-info"></div>
+            </div>
+        </div>
+
+        <div class="test-info">
+            <h3>📝 实现说明</h3>
+            <p><strong>修改内容：</strong></p>
+            <ul>
+                <li>在HTML中为特定文字添加 &lt;span style="color: #c9483c;"&gt; 标签</li>
+                <li>在CSS中添加 .red-text 样式类，方便将来维护</li>
+                <li>使用网易云音乐的主题红色 #c9483c</li>
+                <li>保持字体粗细为正常，确保视觉协调</li>
+            </ul>
+            
+            <p><strong>标红的文字：</strong></p>
+            <ul>
+                <li>国风中文网 → 官场职场</li>
+                <li>采薇书院 → 都市言情、宫斗宅斗</li>
+                <li>客户端APP下载 → 新用户全场免费畅读10天</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function checkRedText() {
+            const redSpans = document.querySelectorAll('span[style*="color: #c9483c"]');
+            
+            if (redSpans.length > 0) {
+                let results = [];
+                redSpans.forEach((span, index) => {
+                    const computedStyle = window.getComputedStyle(span);
+                    const color = computedStyle.color;
+                    const text = span.textContent;
+                    results.push(`文字"${text}": ${color}`);
+                });
+                
+                document.getElementById('color-info').innerHTML = `
+                    <strong>找到 ${redSpans.length} 个红色文字：</strong><br>
+                    ${results.join('<br>')}
+                `;
+                document.getElementById('color-result').style.display = 'block';
+            } else {
+                alert('未找到红色文字');
+            }
+        }
+
+        // 页面加载完成后的提示
+        window.onload = function() {
+            console.log('红色文字测试页面已加载');
+            console.log('请检查指定文字是否显示为红色');
+        };
+    </script>
+</body>
+</html> 
