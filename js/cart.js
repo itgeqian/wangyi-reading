@@ -474,7 +474,8 @@ class ShoppingCart {
   // 添加商品到购物车
   addItem(product) {
     // 检查登录状态
-    if (!this.checkLoginStatus()) {
+    const loginStatus = this.checkLoginStatus();
+    if (!loginStatus.isLoggedIn) {
       this.showLoginPrompt();
       return false;
     }

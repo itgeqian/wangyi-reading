@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网易云阅读 - 首页设计稿</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        /* 顶部导航栏 */
+        .top-nav {
+            background: linear-gradient(135deg, #c9483c 0%, #e74c3c 100%);
+            color: white;
+            padding: 8px 0;
+            font-size: 12px;
+        }
+
+        .top-nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-nav .left-links a,
+        .top-nav .right-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: opacity 0.3s;
+        }
+
+        .top-nav a:hover {
+            opacity: 0.8;
+        }
+
+        /* 主导航栏 */
+        .main-nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .main-nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #c9483c;
+            text-decoration: none;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 28px;
+        }
+
+        .search-box {
+            flex: 1;
+            max-width: 600px;
+            margin: 0 40px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            height: 45px;
+            border: 2px solid #e9ecef;
+            border-radius: 25px;
+            padding: 0 50px 0 20px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .search-box input:focus {
+            border-color: #c9483c;
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #c9483c;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .search-btn:hover {
+            background: #b23e35;
+        }
+
+        .user-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .cart-icon {
+            position: relative;
+            color: #c9483c;
+            font-size: 24px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .cart-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .user-menu {
+            display: flex;
+            gap: 15px;
+        }
+
+        .user-menu a {
+            color: #666;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        .user-menu a:hover {
+            background: #c9483c;
+            color: white;
+        }
+
+        /* 分类导航 */
+        .category-nav {
+            background: white;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .category-nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            height: 50px;
+        }
+
+        .category-nav a {
+            color: #666;
+            text-decoration: none;
+            padding: 15px 20px;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .category-nav a:hover,
+        .category-nav a.active {
+            color: #c9483c;
+            border-bottom-color: #c9483c;
+        }
+
+        /* 轮播图区域 */
+        .hero-section {
+            margin: 20px 0;
+        }
+
+        .hero-section .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 20px;
+        }
+
+        .carousel {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .carousel-content h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .carousel-content p {
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        .carousel-btn {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid white;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+        }
+
+        .carousel-btn:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        .sidebar-ads {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .ad-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .ad-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .ad-card i {
+            font-size: 40px;
+            color: #c9483c;
+            margin-bottom: 10px;
+        }
+
+        .ad-card h4 {
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .ad-card p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* 推荐书籍区域 */
+        .featured-books {
+            margin: 40px 0;
+        }
+
+        .featured-books .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .book-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .book-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .book-cover {
+            height: 300px;
+            background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .book-info {
+            padding: 20px;
+        }
+
+        .book-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .book-author {
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        .book-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #c9483c;
+        }
+
+        .add-to-cart {
+            background: #c9483c;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background: #b23e35;
+        }
+
+        /* 分类展示区域 */
+        .categories-section {
+            background: white;
+            padding: 60px 0;
+        }
+
+        .categories-section .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .category-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 20px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: scale(1.05);
+        }
+
+        .category-card i {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .category-card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .category-card p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* 页脚 */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 0 20px;
+        }
+
+        .footer .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: #ecf0f1;
+        }
+
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #c9483c;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #34495e;
+            padding-top: 20px;
+            text-align: center;
+            color: #bdc3c7;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .main-nav .container {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 20px;
+            }
+
+            .search-box {
+                margin: 15px 0;
+                max-width: 100%;
+            }
+
+            .hero-section .container {
+                grid-template-columns: 1fr;
+            }
+
+            .carousel {
+                height: 250px;
+            }
+
+            .carousel-content h2 {
+                font-size: 24px;
+            }
+
+            .books-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <nav class="top-nav">
+        <div class="container">
+            <div class="left-links">
+                <a href="#">网易云音乐</a>
+                <a href="#">网易邮箱</a>
+                <a href="#">网易新闻</a>
+            </div>
+            <div class="right-links">
+                <a href="#">客服中心</a>
+                <a href="#">意见反馈</a>
+                <a href="#">手机版</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主导航栏 -->
+    <nav class="main-nav">
+        <div class="container">
+            <a href="#" class="logo">
+                <i class="fas fa-book-open"></i>
+                网易云阅读
+            </a>
+
+            <div class="search-box">
+                <input type="text" placeholder="搜索书籍、作者、出版社...">
+                <button class="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+
+            <div class="user-actions">
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">3</span>
+                </div>
+                <div class="user-menu">
+                    <a href="#">登录</a>
+                    <a href="#">注册</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 分类导航 -->
+    <nav class="category-nav">
+        <div class="container">
+            <a href="#" class="active">全部商品分类</a>
+            <a href="#">小说文学</a>
+            <a href="#">经管励志</a>
+            <a href="#">人文社科</a>
+            <a href="#">科技理工</a>
+            <a href="#">生活艺术</a>
+            <a href="#">教育考试</a>
+            <a href="#">童书</a>
+        </div>
+    </nav>
+
+    <!-- 轮播图区域 -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="carousel">
+                <div class="carousel-content">
+                    <h2>发现好书，享受阅读</h2>
+                    <p>海量图书资源，精选优质内容，让阅读成为一种享受</p>
+                    <button class="carousel-btn">立即探索</button>
+                </div>
+            </div>
+            <div class="sidebar-ads">
+                <div class="ad-card">
+                    <i class="fas fa-shipping-fast"></i>
+                    <h4>全国包邮</h4>
+                    <p>满39元免运费</p>
+                </div>
+                <div class="ad-card">
+                    <i class="fas fa-medal"></i>
+                    <h4>正品保证</h4>
+                    <p>100%正版图书</p>
+                </div>
+                <div class="ad-card">
+                    <i class="fas fa-headset"></i>
+                    <h4>贴心服务</h4>
+                    <p>7×24小时客服</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 推荐书籍区域 -->
+    <section class="featured-books">
+        <div class="container">
+            <div class="section-title">
+                <h2>热门推荐</h2>
+                <p>精选优质图书，为您推荐最值得阅读的好书</p>
+            </div>
+            <div class="books-grid">
+                <div class="book-card">
+                    <div class="book-cover">《活着》</div>
+                    <div class="book-info">
+                        <div class="book-title">活着</div>
+                        <div class="book-author">余华 著</div>
+                        <div class="book-price">
+                            <span class="price">¥28.50</span>
+                            <button class="add-to-cart">加入购物车</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <div class="book-cover">《百年孤独》</div>
+                    <div class="book-info">
+                        <div class="book-title">百年孤独</div>
+                        <div class="book-author">加西亚·马尔克斯 著</div>
+                        <div class="book-price">
+                            <span class="price">¥39.80</span>
+                            <button class="add-to-cart">加入购物车</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <div class="book-cover">《三体》</div>
+                    <div class="book-info">
+                        <div class="book-title">三体</div>
+                        <div class="book-author">刘慈欣 著</div>
+                        <div class="book-price">
+                            <span class="price">¥23.00</span>
+                            <button class="add-to-cart">加入购物车</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <div class="book-cover">《人类简史》</div>
+                    <div class="book-info">
+                        <div class="book-title">人类简史</div>
+                        <div class="book-author">尤瓦尔·赫拉利 著</div>
+                        <div class="book-price">
+                            <span class="price">¥55.30</span>
+                            <button class="add-to-cart">加入购物车</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 分类展示区域 -->
+    <section class="categories-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>图书分类</h2>
+                <p>丰富的图书分类，满足不同读者的阅读需求</p>
+            </div>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <i class="fas fa-book"></i>
+                    <h3>小说文学</h3>
+                    <p>经典名著，现代小说</p>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>经管励志</h3>
+                    <p>商业管理，励志成长</p>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>教育考试</h3>
+                    <p>教材教辅，考试用书</p>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-microscope"></i>
+                    <h3>科技理工</h3>
+                    <p>科学技术，工程数学</p>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-palette"></i>
+                    <h3>生活艺术</h3>
+                    <p>生活百科，艺术设计</p>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-child"></i>
+                    <h3>童书</h3>
+                    <p>儿童读物，启蒙教育</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>购物指南</h3>
+                    <a href="#">购物流程</a>
+                    <a href="#">会员介绍</a>
+                    <a href="#">生活旅行</a>
+                    <a href="#">常见问题</a>
+                </div>
+                <div class="footer-section">
+                    <h3>配送方式</h3>
+                    <a href="#">上门自提</a>
+                    <a href="#">211限时达</a>
+                    <a href="#">配送服务查询</a>
+                    <a href="#">配送费收取标准</a>
+                </div>
+                <div class="footer-section">
+                    <h3>支付方式</h3>
+                    <a href="#">货到付款</a>
+                    <a href="#">在线支付</a>
+                    <a href="#">分期付款</a>
+                    <a href="#">邮局汇款</a>
+                </div>
+                <div class="footer-section">
+                    <h3>售后服务</h3>
+                    <a href="#">售后政策</a>
+                    <a href="#">价格保护</a>
+                    <a href="#">退款说明</a>
+                    <a href="#">返修/退换货</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 网易云阅读. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

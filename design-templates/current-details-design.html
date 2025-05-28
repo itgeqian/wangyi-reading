@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>《未来简史：从智人到神人》- 书籍详情 - 网易云阅读 (设计稿)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* 顶部导航 */
+        .head {
+            background: white;
+            padding: 15px 0;
+            border-bottom: 1px solid #e9ecef;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .head .area {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .head-nav {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+            align-items: center;
+            float: left;
+        }
+
+        .head-nav li a {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .head-nav li a:hover {
+            color: #c9483c;
+        }
+
+        .head-nav li span {
+            color: #ccc;
+        }
+
+        .login {
+            float: right;
+        }
+
+        .login ul {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .login ul li a {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .login ul li a:hover {
+            color: #c9483c;
+        }
+
+        /* 主导航区域 */
+        .nav-seach {
+            background: white;
+            padding: 20px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .nav-seach .area {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo h1 a {
+            color: #c9483c;
+            text-decoration: none;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .page-actions .btn-home {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #28a745;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 20px;
+            border: 2px solid #28a745;
+            border-radius: 25px;
+            transition: all 0.3s;
+        }
+
+        .page-actions .btn-home:hover {
+            background: #28a745;
+            color: white;
+        }
+
+        .clouds a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #c9483c;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 20px;
+            border: 2px solid #c9483c;
+            border-radius: 25px;
+            transition: all 0.3s;
+        }
+
+        .clouds a:hover {
+            background: #c9483c;
+            color: white;
+        }
+
+        /* 导航菜单 */
+        .nav-nav {
+            background: white;
+            padding: 15px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .nav-nav .area {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-nav ul li a {
+            color: #666;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 0;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .nav-nav ul li a:hover,
+        .nav-nav ul li a[style*="color: #c9483c"] {
+            color: #c9483c !important;
+            border-bottom-color: #c9483c;
+        }
+
+        /* 主要内容区域 */
+        .main-content {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
+        }
+
+        /* 面包屑导航 */
+        .now-place {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #c9483c, #e74c3c);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            font-size: 14px;
+            box-shadow: 0 4px 15px rgba(201, 72, 60, 0.2);
+        }
+
+        .now-place a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .now-place a:hover {
+            color: white;
+        }
+
+        .now-place .sep {
+            color: rgba(255,255,255,0.6);
+            margin: 0 8px;
+        }
+
+        /* 书籍详情区域 */
+        .book-details {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .book-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .book-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateX(0) translateY(0); }
+            100% { transform: translateX(-50px) translateY(-50px); }
+        }
+
+        .book-info-header {
+            display: flex;
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .book-cover-large {
+            width: 200px;
+            height: 280px;
+            background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+
+        .book-cover-large:hover {
+            transform: scale(1.05);
+        }
+
+        .book-meta {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .book-title {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .book-author {
+            font-size: 18px;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .book-rating {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stars {
+            display: flex;
+            gap: 5px;
+        }
+
+        .star {
+            color: #ffd700;
+            font-size: 20px;
+            transition: transform 0.3s;
+        }
+
+        .star:hover {
+            transform: scale(1.2);
+        }
+
+        .rating-score {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .rating-count {
+            opacity: 0.8;
+        }
+
+        .book-price-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .price-large {
+            font-size: 32px;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        .original-price {
+            font-size: 18px;
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+
+        .discount-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* 侧边栏 */
+        .pf-box {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .pf-show {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pf-show::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(135deg, #c9483c, #e74c3c);
+        }
+
+        .fenshu {
+            margin-bottom: 20px;
+        }
+
+        .f-star {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        .f-star span {
+            width: 20px;
+            height: 20px;
+            background: #ffd700;
+            border-radius: 3px;
+            position: relative;
+        }
+
+        .f-star span::before {
+            content: '★';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 12px;
+        }
+
+        .f-star .nostar {
+            background: #ddd;
+        }
+
+        .score {
+            font-size: 24px;
+            font-weight: bold;
+            color: #c9483c;
+            margin-right: 10px;
+        }
+
+        .renshu {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .biaoqian {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .biaoqian td {
+            padding: 8px 0;
+            border-bottom: 1px solid #f1f3f4;
+            vertical-align: top;
+        }
+
+        .biaoqian td:first-child {
+            color: #666;
+            font-weight: 600;
+            width: 60px;
+        }
+
+        .biaoqian td:last-child {
+            color: #333;
+        }
+
+        .biaoqian a {
+            color: #c9483c;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .biaoqian a:hover {
+            color: #b23e35;
+        }
+
+        .fenlei {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .u-tag {
+            background: #f8f9fa;
+            color: #666;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: 1px solid #e9ecef;
+        }
+
+        .u-tag:hover {
+            background: #c9483c;
+            color: white;
+            border-color: #c9483c;
+        }
+
+        /* 用户还喜欢 */
+        .user-like {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .user-like h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-like h4::before {
+            content: '\f004';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: #c9483c;
+        }
+
+        .like-list ul {
+            list-style: none;
+        }
+
+        .like-list li {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #f1f3f4;
+            transition: transform 0.3s;
+        }
+
+        .like-list li:hover {
+            transform: translateX(5px);
+        }
+
+        .like-list li:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .cover {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .cover img {
+            width: 60px;
+            height: 80px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .completed {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #28a745;
+            color: white;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 8px;
+        }
+
+        .book-cont {
+            flex: 1;
+        }
+
+        .book-cont .name {
+            color: #333;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .book-cont .name:hover {
+            color: #c9483c;
+        }
+
+        .book-cont .author {
+            color: #666;
+            font-size: 12px;
+            margin: 5px 0;
+        }
+
+        .book-cont span {
+            color: #999;
+            font-size: 12px;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .book-info-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .book-cover-large {
+                align-self: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .book-title {
+                font-size: 24px;
+            }
+
+            .nav-nav .area {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .nav-nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        /* 清除浮动 */
+        .area::after {
+            content: '';
+            display: table;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <div class="head">
+        <div class="area">
+            <header>
+                <ul class="head-nav">
+                    <li><a href="#" title="网易云阅读">网易云阅读</a></li>
+                    <li><span>|</span></li>
+                    <li><a href="#" title="国风中文网">国风中文网</a></li>
+                    <li><span>|</span></li>
+                    <li><a href="#" title="采薇书院">采薇书院</a></li>
+                    <li><span>|</span></li>
+                    <li><a href="#" title="从电脑上导出书籍">从电脑上导出书籍</a></li>
+                    <li><span>|</span></li>
+                    <li><a href="#" title="公众号">公众号</a></li>
+                    <li><span>|</span></li>
+                    <li><a href="#" title="渠道推广平台">渠道推广平台</a></li>
+                </ul>
+                <div class="login">
+                    <ul>
+                        <li><a href="login.html">登陆</a></li>
+                        <li><span>|</span></li>
+                        <li><a href="register.html">注册</a></li>
+                        <li><span>|</span></li>
+                        <li><a href="#">举报</a></li>
+                    </ul>
+                </div>
+            </header>
+        </div>
+    </div>
+
+    <!-- 主要内容 -->
+    <section>
+        <div class="area">
+            <!-- 主导航区域 -->
+            <div class="nav-seach">
+                <div class="area">
+                    <div class="logo">
+                        <h1><a href="index.html">网易云阅读</a></h1>
+                    </div>
+                    <div class="page-actions">
+                        <a href="index.html" class="btn-home">
+                            <i class="fas fa-home"></i>返回首页
+                        </a>
+                    </div>
+                    <div class="clouds">
+                        <a href="shopCar.html">
+                            <i class="fas fa-shopping-cart"></i>购物车
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 导航菜单 -->
+            <div class="nav-nav">
+                <div class="area">
+                    <ul>
+                        <li><a href="">首页</a></li>
+                        <li><a href="" style="color: #c9483c">出版图书</a></li>
+                        <li><a href="">国风中文网</a></li>
+                        <li><a href="">采薇书院</a></li>
+                        <li><a href="">排行榜</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href=""><i class="fas fa-user"></i> 个人中心</a></li>
+                        <li><a href=""><i class="fas fa-credit-card"></i> 充值</a></li>
+                        <li><a href=""><i class="fas fa-download"></i> 客服端</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 主要内容 -->
+            <div class="main-content">
+                <!-- 面包屑导航 -->
+                <div class="now-place">
+                    当前位置：
+                    <a href="publishBook.html">出版图书</a>
+                    <span class="sep">></span>
+                    <a href="publishBook.html">人文社科</a>
+                    <span class="sep">></span>
+                    <a href="publishBook.html">社会学</a>
+                    <span class="sep">></span>
+                    未来简史：从智人到神人
+                </div>
+
+                <!-- 书籍详情 -->
+                <div class="book-details">
+                    <!-- 书籍头部信息 -->
+                    <div class="book-header">
+                        <div class="book-info-header">
+                            <div class="book-cover-large">《未来简史》</div>
+                            <div class="book-meta">
+                                <h1 class="book-title">未来简史：从智人到神人</h1>
+                                <p class="book-author">【以色列】尤瓦尔·赫拉利 著</p>
+                                <div class="book-rating">
+                                    <div class="stars">
+                                        <i class="fas fa-star star"></i>
+                                        <i class="fas fa-star star"></i>
+                                        <i class="fas fa-star star"></i>
+                                        <i class="fas fa-star star"></i>
+                                        <i class="far fa-star star"></i>
+                                    </div>
+                                    <span class="rating-score">8.0</span>
+                                    <span class="rating-count">(96人评分)</span>
+                                </div>
+                                <div class="book-price-header">
+                                    <span class="price-large">¥45.80</span>
+                                    <span class="original-price">¥68.00</span>
+                                    <span class="discount-badge">6.7折</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 侧边栏 -->
+                <div class="pf-box">
+                    <!-- 评分小星星 -->
+                    <div class="pf-show">
+                        <div class="fenshu">
+                            <div class="f-star">
+                                <span>&nbsp;</span>
+                                <span>&nbsp;</span>
+                                <span>&nbsp;</span>
+                                <span>&nbsp;</span>
+                                <span class="nostar">&nbsp;</span>    
+                            </div>
+                            <span class="score">8.0</span>
+                            <span class="renshu">96人评分</span>
+                        </div>
+                        <table class="biaoqian">
+                            <tbody>
+                                <tr>
+                                    <td>字数：</td>
+                                    <td>31.5万</td>
+                                </tr>
+                                <tr>
+                                    <td>点击：</td>
+                                    <td>592.7万</td>
+                                </tr>
+                                <tr>
+                                    <td>分类：</td>
+                                    <td><a href="">社会学</a></td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">标签：</td>
+                                    <td>
+                                        <div class="fenlei">
+                                            <a class="u-tag" href="">未来</a>
+                                            <a class="u-tag" href="">尤瓦尔</a>
+                                            <a class="u-tag" href="">赫拉利</a>
+                                            <a class="u-tag" href="">人类史</a>
+                                            <a class="u-tag" href="">社会学</a>
+                                            <a class="u-tag" href="">思维</a>
+                                            <a class="u-tag" href="">人类学</a>
+                                            <a class="u-tag" href="">历史</a>
+                                            <a class="u-tag" href="">科普</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- 用户还喜欢 -->
+                    <div class="user-like">
+                        <h4>用户还喜欢</h4>
+                        <div class="like-list">
+                            <ul>
+                                <li>
+                                    <a href="" class="cover">
+                                        <img src="https://via.placeholder.com/60x80/667eea/ffffff?text=人类简史" alt="人类简史">
+                                        <div class="completed">完结</div>
+                                    </a>
+                                    <div class="book-cont">
+                                        <p>
+                                            <a href="" class="name">人类简史：从动物到上帝</a>
+                                        </p>
+                                        <p class="author">【以色列】尤瓦尔·赫拉利</p>
+                                        <span>《人类简史： 从动物到上帝》是以色列新锐历史学家的一部重磅作品。
+                                            从十万年前有生命迹象开始到21世纪资本、科技交织的人类发展史。</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="" class="cover">
+                                        <img src="https://via.placeholder.com/60x80/764ba2/ffffff?text=人类简史" alt="人类简史精装版">
+                                        <div class="completed">完结</div>
+                                    </a>
+                                    <div class="book-cont">
+                                        <p>
+                                            <a href="" class="name">人类简史：从动物到上帝（精装版）</a>
+                                        </p>
+                                        <p class="author">【以色列】尤瓦尔·赫拉利</p>
+                                        <span>精装典藏版，更好的阅读体验，收藏价值更高。</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="" class="cover">
+                                        <img src="https://via.placeholder.com/60x80/f093fb/ffffff?text=今日简史" alt="今日简史">
+                                        <div class="completed">完结</div>
+                                    </a>
+                                    <div class="book-cont">
+                                        <p>
+                                            <a href="" class="name">今日简史：人类命运大议题</a>
+                                        </p>
+                                        <p class="author">【以色列】尤瓦尔·赫拉利</p>
+                                        <span>继《人类简史》《未来简史》之后，尤瓦尔·赫拉利再度重磅回归！</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // 星星悬停效果
+        document.querySelectorAll('.star').forEach((star, index) => {
+            star.addEventListener('mouseenter', () => {
+                document.querySelectorAll('.star').forEach((s, i) => {
+                    if (i <= index) {
+                        s.style.transform = 'scale(1.2)';
+                        s.style.filter = 'brightness(1.2)';
+                    }
+                });
+            });
+            
+            star.addEventListener('mouseleave', () => {
+                document.querySelectorAll('.star').forEach(s => {
+                    s.style.transform = '';
+                    s.style.filter = '';
+                });
+            });
+        });
+
+        // 标签悬停效果
+        document.querySelectorAll('.u-tag').forEach(tag => {
+            tag.addEventListener('click', function(e) {
+                e.preventDefault();
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+    </script>
+</body>
+</html> 
