@@ -326,9 +326,9 @@ var showContent = (function() {
 				
 				var $li = $("<li></li>");
 				$li.html(`
-					<div class="head-pic">
-						<img src="img/img/tx.png" alt="">
-					</div>
+							<div class="head-pic">
+                            <img src="img/img/tx.png" alt="">
+                            </div>
 					<div class="info">
 						<i>用户${commentCount}</i>
 						<span class="comment-time">${timeStr}</span>
@@ -540,7 +540,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	// 初始化评论功能
 	if (typeof showContent !== 'undefined') {
-		showContent.init();
+	showContent.init();
 		console.log('评论功能初始化完成');
 	}
 	
