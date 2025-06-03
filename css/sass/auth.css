@@ -569,22 +569,22 @@
 
 @media (max-width: 480px) {
     .auth-title h2 {
-        font-size: 24px;
+        font-size: 20px;
     }
     
     .side-content h3 {
-        font-size: 20px;
+        font-size: 16px;
     }
     
     .features li,
     .benefits li {
-        padding: 12px;
+        font-size: 12px;
     }
     
     .features li i,
     .benefits li i {
-        font-size: 20px;
-        width: 28px;
-        margin-right: 12px;
+        width: 14px;
+        height: 14px;
+        margin-right: 6px;
     }
 } 

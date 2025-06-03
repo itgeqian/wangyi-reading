@@ -555,3 +555,11 @@
     font-size: 16px;
   }
 }
+
+/* 只隐藏详情页中间主导航区域(.nav-nav)的指定项目 */
+body[data-page="details"] .nav-nav ul:first-child li:nth-child(3), /* 国风中文网 */
+body[data-page="details"] .nav-nav ul:first-child li:nth-child(4), /* 采薇书院 */
+body[data-page="details"] .nav-nav ul:first-child li:nth-child(5), /* 排行榜 */
+body[data-page="details"] .nav-nav ul:nth-child(2) li:nth-child(3) { /* 客服端 */
+    display: none !important;
+}

@@ -1022,3 +1022,22 @@ a {
     z-index: 5000;
     margin-bottom: 10px;
     background: url(../../img/nav_r.png) no-repeat 0px 0px; }
+
+/* 隐藏未实现功能的导航项 */
+
+/* 首页：只隐藏中间主导航区域(.nav-nav)的指定项目 */
+body[data-page="home"] .nav-nav ul:first-child li:nth-child(2), /* 出版图书 */
+body[data-page="home"] .nav-nav ul:first-child li:nth-child(3), /* 国风中文网 */
+body[data-page="home"] .nav-nav ul:first-child li:nth-child(4), /* 采薇书院 */
+body[data-page="home"] .nav-nav ul:first-child li:nth-child(5), /* 排行榜 */
+body[data-page="home"] .nav-nav ul:nth-child(2) li:nth-child(3) { /* 客服端 */
+    display: none !important;
+}
+
+/* 详情页：保留出版图书，隐藏中间主导航区域(.nav-nav)的其他指定项目 */
+body[data-page="details"] .nav-nav ul:first-child li:nth-child(3), /* 国风中文网 */
+body[data-page="details"] .nav-nav ul:first-child li:nth-child(4), /* 采薇书院 */
+body[data-page="details"] .nav-nav ul:first-child li:nth-child(5), /* 排行榜 */
+body[data-page="details"] .nav-nav ul:nth-child(2) li:nth-child(3) { /* 客服端 */
+    display: none !important;
+}
