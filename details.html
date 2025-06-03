@@ -522,29 +522,5 @@
 <script src="js/auth.js"></script>
 <script src="js/details.js"></script>
 <script src="js/Jsonp.js"></script>
-<script>
-	// 页面加载完成后初始化
-	document.addEventListener('DOMContentLoaded', function() {
-		console.log('详情页加载完成');
-		
-		// 更新用户登录状态显示
-		if (typeof updateUserStatus !== 'undefined') {
-			updateUserStatus();
-			console.log('用户状态更新完成');
-		}
-		
-		// 初始化商品详情
-		if (typeof shopCar !== 'undefined') {
-			shopCar.init();
-			console.log('商品详情初始化完成');
-		}
-		
-		// 初始化评论功能
-		if (typeof showContent !== 'undefined') {
-			showContent.init();
-			console.log('评论功能初始化完成');
-		}
-	});
-</script>
 
 </html>

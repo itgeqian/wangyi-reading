@@ -1,10 +1,19 @@
 var shopCar = (function() {
-	let $bookInf, $shopBtn, currentBook;
+	let $bookInf, $shopBtn, currentBook, isInitialized = false;
 	return {
 		init() {
+			// 防止重复初始化
+			if (isInitialized) {
+				console.log('商品详情已经初始化，跳过重复初始化');
+				return;
+			}
+			
 			$bookInf = document.querySelector(".book-inf");
 			this.event();
 			this.initAnimations();
+			
+			isInitialized = true;
+			console.log('商品详情初始化完成');
 		},
 		event() {
 			var _this = this;
@@ -55,11 +64,12 @@ var shopCar = (function() {
 			this.addBookAnimation();
 		},
 		bindCartEvents() {
-			$shopBtn = document.querySelector(".shop-btn");
 			const $shoppingCar = document.querySelector(".shopping-car");
+			$shopBtn = document.querySelector(".shop-btn");
 			
-			if ($shopBtn) {
-				$shopBtn.onclick = (e) => {
+			if ($shoppingCar) {
+				// 绑定事件到整个购物车按钮容器，而不是内部的span
+				$shoppingCar.onclick = (e) => {
 					e.preventDefault();
 					
 					// 添加点击动画
@@ -95,6 +105,21 @@ var shopCar = (function() {
 						this.showMessage('购物车系统未初始化，请刷新页面重试', 'error');
 					}
 				}
+				
+				// 添加鼠标悬停效果，提升用户体验
+				$shoppingCar.addEventListener('mouseenter', () => {
+					if (!$shoppingCar.classList.contains('in-cart')) {
+						$shoppingCar.style.transform = 'translateY(-2px)';
+						$shoppingCar.style.boxShadow = '0 6px 20px rgba(201, 72, 60, 0.3)';
+					}
+				});
+				
+				$shoppingCar.addEventListener('mouseleave', () => {
+					if (!$shoppingCar.classList.contains('in-cart')) {
+						$shoppingCar.style.transform = '';
+						$shoppingCar.style.boxShadow = '';
+					}
+				});
 			}
 		},
 		// 更新按钮到已在购物车状态
@@ -290,19 +315,354 @@ var shopCar = (function() {
 }());
 
 var showContent = (function() {
-	let $comment, $bottombar, commentCount = 0;
+	let $comment, $bottombar, commentCount = 0, isInitialized = false;
 	return {
 		init() {
+			// 防止重复初始化
+			if (isInitialized) {
+				console.log('评论功能已经初始化，跳过重复初始化');
+				return;
+			}
+			
 			$comment = $(".comment-list");
 			$bottombar = $(".bottombar");
 			this.event();
 			this.initCommentAnimations();
+			this.loadComments(); // 加载保存的评论
+			
+			isInitialized = true;
+			console.log('评论功能初始化完成');
+		},
+		// 获取当前书籍ID
+		getCurrentBookId() {
+			const url = window.location.href;
+			const id = url.split("?")[1]?.split("=")[1];
+			return id || '1';
+		},
+		// 加载评论数据
+		loadComments() {
+			const bookId = this.getCurrentBookId();
+			const commentsKey = `comments_book_${bookId}`;
+			const savedComments = localStorage.getItem(commentsKey);
+			
+			if (savedComments) {
+				try {
+					const comments = JSON.parse(savedComments);
+					comments.forEach(comment => {
+						this.renderComment(comment, false); // false表示不保存到localStorage
+					});
+					commentCount = comments.length;
+				} catch (e) {
+					console.error('加载评论失败:', e);
+				}
+			}
+		},
+		// 保存评论到本地存储
+		saveComment(commentData) {
+			const bookId = this.getCurrentBookId();
+			const commentsKey = `comments_book_${bookId}`;
+			let comments = [];
+			
+			try {
+				const savedComments = localStorage.getItem(commentsKey);
+				if (savedComments) {
+					comments = JSON.parse(savedComments);
+				}
+			} catch (e) {
+				console.error('读取评论失败:', e);
+			}
+			
+			comments.unshift(commentData); // 新评论放在最前面
+			localStorage.setItem(commentsKey, JSON.stringify(comments));
+		},
+		// 删除评论
+		deleteComment(commentId) {
+			const bookId = this.getCurrentBookId();
+			const commentsKey = `comments_book_${bookId}`;
+			
+			try {
+				const savedComments = localStorage.getItem(commentsKey);
+				if (savedComments) {
+					let comments = JSON.parse(savedComments);
+					comments = comments.filter(comment => comment.id !== commentId);
+					localStorage.setItem(commentsKey, JSON.stringify(comments));
+					return true;
+				}
+			} catch (e) {
+				console.error('删除评论失败:', e);
+			}
+			return false;
+		},
+		// 渲染评论
+		renderComment(commentData, shouldSave = true) {
+			const currentUser = checkLoginStatus();
+			const isOwnComment = currentUser.isLoggedIn && 
+				currentUser.user.username === commentData.username;
+			
+			const deleteButton = isOwnComment ? 
+				`<button class="delete-btn" onclick="showContent.handleDeleteComment('${commentData.id}')">
+					<i class="iconfont icon-delete"></i>
+					删除
+				</button>` : '';
+			
+			var $li = $("<li></li>");
+			$li.attr('data-comment-id', commentData.id);
+			$li.html(`
+				<div class="head-pic">
+					<img src="img/img/tx.png" alt="">
+				</div>
+				<div class="info">
+					<i>${commentData.username}</i>
+					<span class="comment-time">${commentData.time}</span>
+				</div>
+				<blockquote>${commentData.content}</blockquote>
+				<div class="opt">
+					<button class="like-btn" onclick="showContent.likeComment(this)">
+						<i class="iconfont icon-like"></i>
+						<span>0</span>
+					</button>
+					<button class="reply-btn" onclick="showContent.replyComment(this)">
+						<i class="iconfont icon-reply"></i>
+						回复
+					</button>
+					${deleteButton}
+				</div>
+			`);
+			
+			// 添加新评论动画
+			$li.css({
+				opacity: 0,
+				transform: 'translateY(20px)'
+			});
+			
+			$comment.prepend($li);
+			
+			// 动画显示新评论
+			setTimeout(() => {
+				$li.css({
+					transition: 'all 0.5s ease',
+					opacity: 1,
+					transform: 'translateY(0)'
+				});
+			}, 100);
+			
+			// 保存评论到本地存储
+			if (shouldSave) {
+				this.saveComment(commentData);
+			}
+		},
+		// 处理删除评论
+		handleDeleteComment(commentId) {
+			if (confirm('确定要删除这条评论吗？')) {
+				const success = this.deleteComment(commentId);
+				if (success) {
+					// 从页面中移除评论元素
+					const $commentElement = $(`li[data-comment-id="${commentId}"]`);
+					$commentElement.css({
+						transition: 'all 0.3s ease',
+						opacity: 0,
+						transform: 'translateX(-100%)'
+					});
+					
+					setTimeout(() => {
+						$commentElement.remove();
+					}, 300);
+					
+					this.showCommentMessage('评论删除成功', 'success');
+				} else {
+					this.showCommentMessage('删除评论失败', 'error');
+				}
+			}
+		},
+		// 显示登录提示弹窗
+		showLoginRequired() {
+			// 检查是否已经存在弹窗，避免重复创建
+			if (document.querySelector('.login-modal')) {
+				return;
+			}
+			
+			const loginModal = document.createElement('div');
+			loginModal.className = 'login-modal';
+			loginModal.innerHTML = `
+				<div class="login-modal-content">
+					<div class="login-modal-header">
+						<h3>需要登录</h3>
+						<button class="close-btn">
+							<i class="iconfont icon-close"></i>
+						</button>
+					</div>
+					<div class="login-modal-body">
+						<p>你还没有登录，无法发表评论</p>
+						<p>请先登录后再尝试评论</p>
+					</div>
+					<div class="login-modal-footer">
+						<button class="cancel-btn">取消</button>
+						<a href="login.html" class="login-btn">去登录</a>
+					</div>
+				</div>
+			`;
+			
+			// 添加样式
+			if (!document.querySelector('#login-modal-style')) {
+				const style = document.createElement('style');
+				style.id = 'login-modal-style';
+				style.textContent = `
+					.login-modal {
+						position: fixed;
+						top: 0;
+						left: 0;
+						width: 100%;
+						height: 100%;
+						background: rgba(0,0,0,0.5);
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						z-index: 10000;
+						animation: fadeIn 0.3s ease;
+					}
+					
+					.login-modal-content {
+						background: white;
+						border-radius: 12px;
+						min-width: 400px;
+						max-width: 90vw;
+						box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+						animation: slideIn 0.3s ease;
+					}
+					
+					.login-modal-header {
+						padding: 20px 24px 10px;
+						border-bottom: 1px solid #eee;
+						display: flex;
+						justify-content: space-between;
+						align-items: center;
+					}
+					
+					.login-modal-header h3 {
+						margin: 0;
+						color: #c9483c;
+						font-size: 18px;
+					}
+					
+					.close-btn {
+						background: none;
+						border: none;
+						font-size: 20px;
+						color: #999;
+						cursor: pointer;
+						padding: 5px;
+						border-radius: 50%;
+						transition: all 0.3s ease;
+					}
+					
+					.close-btn:hover {
+						background: #f5f5f5;
+						color: #c9483c;
+					}
+					
+					.login-modal-body {
+						padding: 20px 24px;
+						text-align: center;
+					}
+					
+					.login-modal-body p {
+						margin: 8px 0;
+						color: #666;
+						line-height: 1.5;
+					}
+					
+					.login-modal-footer {
+						padding: 10px 24px 20px;
+						display: flex;
+						justify-content: flex-end;
+						gap: 10px;
+					}
+					
+					.cancel-btn, .login-btn {
+						padding: 8px 20px;
+						border-radius: 6px;
+						border: none;
+						cursor: pointer;
+						font-size: 14px;
+						text-decoration: none;
+						display: inline-block;
+						text-align: center;
+						transition: all 0.3s ease;
+					}
+					
+					.cancel-btn {
+						background: #f8f9fa;
+						color: #6c757d;
+						border: 1px solid #dee2e6;
+					}
+					
+					.cancel-btn:hover {
+						background: #e9ecef;
+					}
+					
+					.login-btn {
+						background: linear-gradient(135deg, #c9483c, #e74c3c);
+						color: white;
+					}
+					
+					.login-btn:hover {
+						transform: translateY(-1px);
+						box-shadow: 0 4px 12px rgba(201, 72, 60, 0.3);
+					}
+					
+					@keyframes fadeIn {
+						from { opacity: 0; }
+						to { opacity: 1; }
+					}
+					
+					@keyframes slideIn {
+						from { 
+							opacity: 0;
+							transform: translateY(-20px) scale(0.9);
+						}
+						to { 
+							opacity: 1;
+							transform: translateY(0) scale(1);
+						}
+					}
+				`;
+				document.head.appendChild(style);
+			}
+			
+			document.body.appendChild(loginModal);
+			
+			// 关闭弹窗的函数
+			const closeModal = () => {
+				loginModal.remove();
+			};
+			
+			// 绑定关闭事件
+			loginModal.querySelector('.close-btn').addEventListener('click', closeModal);
+			loginModal.querySelector('.cancel-btn').addEventListener('click', closeModal);
+			
+			// 点击背景关闭弹窗
+			loginModal.addEventListener('click', (e) => {
+				if (e.target === loginModal) {
+					closeModal();
+				}
+			});
 		},
 		event() {
 			var _this = this;
+			
+			// 解绑之前的事件，防止重复绑定
+			$bottombar.off("click", "button");
+			
 			$bottombar.on("click", "button", function() {
 				const textarea = $("textarea");
 				const content = textarea.val().trim();
+				
+				// 检查用户是否登录
+				const loginStatus = checkLoginStatus();
+				if (!loginStatus.isLoggedIn) {
+					_this.showLoginRequired();
+					return;
+				}
 				
 				if (!content) {
 					_this.showCommentMessage('请输入评论内容', 'warning');
@@ -324,44 +684,17 @@ var showContent = (function() {
 				const now = new Date();
 				const timeStr = now.toLocaleString();
 				
-				var $li = $("<li></li>");
-				$li.html(`
-							<div class="head-pic">
-                            <img src="img/img/tx.png" alt="">
-                            </div>
-					<div class="info">
-						<i>用户${commentCount}</i>
-						<span class="comment-time">${timeStr}</span>
-					</div>
-					<blockquote>${content}</blockquote>
-					<div class="opt">
-						<button class="like-btn" onclick="showContent.likeComment(this)">
-							<i class="iconfont icon-like"></i>
-							<span>0</span>
-						</button>
-						<button class="reply-btn" onclick="showContent.replyComment(this)">
-							<i class="iconfont icon-reply"></i>
-							回复
-						</button>
-					</div>
-				`);
+				// 创建评论数据
+				const commentData = {
+					id: 'comment_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9),
+					username: loginStatus.user.username || loginStatus.user.email || '匿名用户',
+					content: content,
+					time: timeStr,
+					likes: 0
+				};
 				
-				// 添加新评论动画
-				$li.css({
-					opacity: 0,
-					transform: 'translateY(20px)'
-				});
-				
-				$comment.prepend($li);
-				
-				// 动画显示新评论
-				setTimeout(() => {
-					$li.css({
-						transition: 'all 0.5s ease',
-						opacity: 1,
-						transform: 'translateY(0)'
-					});
-				}, 100);
+				// 渲染评论
+				_this.renderComment(commentData);
 				
 				// 清空输入框
 				textarea.val('');
@@ -371,7 +704,10 @@ var showContent = (function() {
 				
 				// 滚动到新评论
 				setTimeout(() => {
-					$li[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+					const $newComment = $comment.find('li').first();
+					if ($newComment.length) {
+						$newComment[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+					}
 				}, 600);
 			});
 		},
@@ -522,8 +858,17 @@ var showContent = (function() {
 	}
 }());
 
+// 页面初始化标志
+let pageInitialized = false;
+
 // 页面加载完成后初始化
 document.addEventListener('DOMContentLoaded', function() {
+	// 防止重复初始化
+	if (pageInitialized) {
+		console.log('页面已经初始化，跳过重复初始化');
+		return;
+	}
+	
 	console.log('详情页加载完成');
 	
 	// 更新用户登录状态显示
@@ -535,13 +880,11 @@ document.addEventListener('DOMContentLoaded', function() {
 	// 初始化商品详情
 	if (typeof shopCar !== 'undefined') {
 		shopCar.init();
-		console.log('商品详情初始化完成');
 	}
 	
 	// 初始化评论功能
 	if (typeof showContent !== 'undefined') {
-	showContent.init();
-		console.log('评论功能初始化完成');
+		showContent.init();
 	}
 	
 	// 监听购物车变化，更新按钮状态
@@ -559,6 +902,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	// 添加返回顶部功能
 	initBackToTop();
+	
+	pageInitialized = true;
+	console.log('页面初始化完成');
 });
 
 // 初始化滚动效果
@@ -615,7 +961,7 @@ style.textContent = `
 		transform: scale(0.95) !important;
 	}
 	
-	.like-btn, .reply-btn {
+	.like-btn, .reply-btn, .delete-btn {
 		background: none;
 		border: 1px solid #dee2e6;
 		padding: 5px 10px;
@@ -634,6 +980,18 @@ style.textContent = `
 		background: #f8f9fa;
 		border-color: #c9483c;
 		color: #c9483c;
+	}
+	
+	.delete-btn {
+		border-color: #dc3545;
+		color: #dc3545;
+	}
+	
+	.delete-btn:hover {
+		background: #fff5f5;
+		border-color: #c82333;
+		color: #c82333;
+		transform: translateY(-1px);
 	}
 	
 	.like-btn.liked {
